@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import GuideHeader from "@/components/pepguide/GuideHeader";
+import CookieConsent from "@/components/CookieConsent";
 
 export const metadata: Metadata = {
   title: { default: "PEP Guide", template: "%s · PEP Guide" },
@@ -15,6 +16,7 @@ export default function PEPGuideLayout({
     <div className="pep-theme flex flex-1 flex-col bg-background text-foreground">
       <GuideHeader />
       {children}
+      <CookieConsent />
     </div>
   );
 }

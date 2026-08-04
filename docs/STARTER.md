@@ -362,7 +362,7 @@ const supabase = createClient();
 - Five stub subpages: `/PEPGuide/sunshine`, `/cars`, `/apts`, `/rxplan`, `/firstassign`
 - "PEP Guide" link added to home page beside Downloads
 - Section data in `lib/pepguide.ts` (single source of truth for slugs/titles/base path)
-- See `docs/TASK_PEPGuide.md` for full detail
+- See `docs/PEPGuide/` for that section's own STARTER and REF files
 
 ### 🚧 Phase 2 In Progress
 
@@ -418,4 +418,5 @@ const supabase = createClient();
 - **Architecture**: `docs/REF_architecture.md`
 - **SEO**: `docs/REF_SEO.md` [IF APPLICABLE]
 - **Styling**: `docs/REF_styling.md`
+- **PEP Guide section**: `docs/PEPGuide/STARTER.md` (plus its own REF_architecture and REF_styling)
 - **Additional references**: Create REF files as needed for your project

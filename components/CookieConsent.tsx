@@ -1,13 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
 import { getConsent, setConsent } from "@/lib/cookies";
 
 export default function CookieConsent() {
   const [visible, setVisible] = useState(false);
-  const pathname = usePathname();
-  const isPepGuide = pathname.startsWith("/PEPGuide");
 
   useEffect(() => {
     if (getConsent() === null) {
@@ -28,14 +25,7 @@ export default function CookieConsent() {
   if (!visible) return null;
 
   return (
-    <div
-      className={[
-        "fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-background px-4 py-4 sm:px-6",
-        isPepGuide ? "pep-theme" : "",
-      ]
-        .join(" ")
-        .trim()}
-    >
+    <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-background px-4 py-4 sm:px-6">
       <div className="mx-auto flex max-w-2xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm text-muted-foreground">
           This site uses cookies to remember which sections you&apos;ve read.

@@ -1,4 +1,4 @@
-import { guideBasePath, aptsBasePath } from "@/lib/pepguide";
+import { guideBasePath, aptsBasePath, rxplanBasePath } from "@/lib/pepguide";
 
 export type SearchEntry = {
   title: string;
@@ -37,8 +37,14 @@ export const searchEntries: SearchEntry[] = [
   {
     title: "Treatment Planning",
     href: `${guideBasePath}/rxplan`,
-    summary: "An overview of how your treatment plan is built and used.",
-    keywords: ["treatment plan", "plan", "goals", "rx", "planning"],
+    summary: "What the treatment plan is, when you get it, and why not to start filling it out.",
+    keywords: ["treatment plan", "plan", "goals", "rx", "planning", "peer mentor", "progress not perfection", "leaf through", "first weekend", "scores"],
+  },
+  {
+    title: "More About Treatment Planning",
+    href: `${rxplanBasePath}/rxplanmore`,
+    summary: "How the scoring, peer feedback, and 360-degree evaluation actually work week to week.",
+    keywords: ["treatment plan", "360", "360-degree", "severity", "risk of relapse", "commitment", "confidence", "quarter point", "ratings", "criteria", "feedback", "sunday", "peer feedback", "scores", "playing therapist", "affirmations"],
   },
   {
     title: "Apartments",
@@ -93,8 +99,8 @@ export const searchEntries: SearchEntry[] = [
   {
     title: "FAQ",
     href: `${guideBasePath}/faq`,
-    summary: "Frequently asked questions from incoming peers.",
-    keywords: ["faq", "questions", "answers", "frequently asked", "common questions"],
+    summary: "Short answers to the questions incoming peers ask most, with links to the full sections.",
+    keywords: ["faq", "questions", "answers", "frequently asked", "common questions", "can i", "am i allowed", "rules"],
   },
 ];
 

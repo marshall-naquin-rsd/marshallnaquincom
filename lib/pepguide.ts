@@ -13,6 +13,8 @@ export const guideSections: GuideSection[] = [
 
 export const aptsBasePath = `${guideBasePath}/apts`;
 
+export const rxplanBasePath = `${guideBasePath}/rxplan`;
+
 export const aptSections: GuideSection[] = [
   { slug: "aptliv", title: "Apartment Living" },
   { slug: "aptrules", title: "Apartment Complex Rules" },
@@ -83,6 +85,23 @@ guideSections.forEach((s, i) => {
     nextTitle: next?.title ?? null,
   };
 });
+
+// Treatment Planning continues onto a second page
+const rxplanMorePath = `${rxplanBasePath}/rxplanmore`;
+const rxplanMoreTitle = "More About Treatment Planning";
+
+routeMap[rxplanMorePath] = {
+  title: rxplanMoreTitle,
+  parentHref: rxplanBasePath,
+  parentTitle: "Treatment Planning",
+  prevHref: rxplanBasePath,
+  prevTitle: "Treatment Planning",
+  nextHref: null,
+  nextTitle: null,
+};
+
+routeMap[rxplanBasePath].nextHref = rxplanMorePath;
+routeMap[rxplanBasePath].nextTitle = rxplanMoreTitle;
 
 // Apartment sub-sections (linear sequence within apts)
 aptSections.forEach((s, i) => {
