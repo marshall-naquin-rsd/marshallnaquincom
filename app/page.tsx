@@ -8,12 +8,20 @@ export default function Home() {
           Marshall Naquin
         </h1>
         <p className="text-lg text-muted-foreground">marshallnaquin.com</p>
-        <Link
-          href="/downloads"
-          className="inline-block pt-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
-        >
-          Downloads
-        </Link>
+        <div className="flex gap-6 pt-2">
+          <Link
+            href="/downloads"
+            className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            Downloads
+          </Link>
+          <Link
+            href="/PEPGuide"
+            className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            PEP Guide
+          </Link>
+        </div>
       </div>
     </main>
   );

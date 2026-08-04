@@ -355,6 +355,15 @@ const supabase = createClient();
 - Playwright configured with smoke test
 - GitHub repository created at https://github.com/marshall-naquin-rsd/marshallnaquincom
 
+### ✅ PEP Guide Section Added (Aug 3, 2026)
+
+- Unlisted `/PEPGuide` section scaffolded — noindexed via nested layout metadata
+- Welcome/index page at `/PEPGuide` with placeholder copy and five section links
+- Five stub subpages: `/PEPGuide/sunshine`, `/cars`, `/apts`, `/rxplan`, `/firstassign`
+- "PEP Guide" link added to home page beside Downloads
+- Section data in `lib/pepguide.ts` (single source of truth for slugs/titles/base path)
+- See `docs/TASK_PEPGuide.md` for full detail
+
 ### 🚧 Phase 2 In Progress
 
 - Design system planning (optional — copy `docs/design_page_template.tsx` to `app/design/page.tsx` if desired)

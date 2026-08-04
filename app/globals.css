@@ -1,10 +1,16 @@
 @import "tailwindcss";
 
+/* ── Base design tokens ── */
 :root {
   --background: #ffffff;
   --foreground: #171717;
   --muted-foreground: #737373;
   --border: #e5e5e5;
+  --primary: #3f7365;
+  --accent: #b85c33;
+  --accent-soft: #f5e4dc;
+  --mint: #daefea;
+  --card: #ffffff;
 }
 
 @theme inline {
@@ -12,6 +18,11 @@
   --color-foreground: var(--foreground);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-mint: var(--mint);
+  --color-card: var(--card);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -22,10 +33,239 @@
     --foreground: #ededed;
     --muted-foreground: #a3a3a3;
     --border: #262626;
+    --primary: #3f7365;
+    --accent: #b85c33;
+    --accent-soft: #f5e4dc;
+    --mint: #daefea;
+    --card: #0a0a0a;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+/* ─────────────────────────────────────────────
+   PEP Guide brand theme (Pine Grove palette)
+   Scoped to .pep-theme — only /PEPGuide routes
+   ───────────────────────────────────────────── */
+.pep-theme {
+  --background: #fbfaf8;
+  --foreground: #2e3430;
+  --muted-foreground: #5f6a65;
+  --border: #dde6e2;
+  --primary: #3f7365;
+  --accent: #b85c33;
+  --accent-soft: #f5e4dc;
+  --mint: #daefea;
+  --card: #ffffff;
+  font-family: var(--font-kumbh), var(--font-geist-sans), sans-serif;
+}
+
+.pep-theme h1,
+.pep-theme h2 {
+  font-family: var(--font-vollkorn), Georgia, serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  .pep-theme {
+    --background: #1b201d;
+    --foreground: #e8ede9;
+    --muted-foreground: #9ba9a0;
+    --border: #2e3c37;
+    --primary: #7fb6a3;
+    --accent: #f0b294;
+    --accent-soft: #3a2825;
+    --mint: #1e3530;
+    --card: #222b26;
+  }
+}
+
+/* ─────────────────────────
+   Typography utilities
+   ───────────────────────── */
+.heading-xl {
+  font-size: 1.875rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--foreground);
+}
+
+.heading-lg {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  color: var(--foreground);
+}
+
+/* ─────────────────────────
+   Prose content wrapper
+   ───────────────────────── */
+.pep-prose {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  line-height: 1.75;
+}
+
+.pep-prose p {
+  text-wrap: pretty;
+  color: var(--foreground);
+}
+
+.pep-prose em {
+  font-style: italic;
+}
+
+.pep-prose h2 {
+  padding-top: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  color: var(--accent);
+}
+
+/* ─────────────────────────
+   Card & list components
+   ───────────────────────── */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+}
+
+.card-list {
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.card-list > li {
+  border-top: 1px solid var(--border);
+}
+
+.card-list > li:first-child {
+  border-top: none;
+}
+
+.info-panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--mint);
+  border-radius: 0.375rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+}
+
+/* ─────────────────────────
+   Buttons
+   ───────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 0.375rem;
+  background: var(--primary);
+  padding: 0.5rem 1.125rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #ffffff;
+  transition: opacity 0.15s;
+  min-height: 2.75rem;
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  opacity: 0.85;
+}
+
+@media (prefers-color-scheme: dark) {
+  .pep-theme .btn-primary {
+    background: var(--foreground);
+    color: var(--background);
+  }
+
+  .pep-theme .btn-primary:hover {
+    opacity: 0.9;
+  }
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 0.375rem;
+  border: 1.5px solid var(--primary);
+  padding: 0.5rem 1.125rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--primary);
+  transition: background 0.15s, color 0.15s;
+  min-height: 2.75rem;
+  white-space: nowrap;
+}
+
+.btn-secondary:hover {
+  background: var(--mint);
+}
+
+.btn-quiet {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.375rem 0;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  transition: color 0.15s;
+  min-height: 2.75rem;
+  white-space: nowrap;
+}
+
+.btn-quiet:hover {
+  color: var(--foreground);
+}
+
+/* ─────────────────────────
+   Chip / badge
+   ───────────────────────── */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2em;
+  border-radius: 9999px;
+  padding: 0.125rem 0.625rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+
+.chip-mint {
+  background: var(--mint);
+  color: var(--primary);
+}
+
+/* ─────────────────────────
+   Focus ring
+   ───────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ─────────────────────────
+   Reduced motion
+   ───────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
