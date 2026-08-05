@@ -29,6 +29,12 @@ The guide adds **zero dependencies** beyond what the parent site already has.
 - No data collection — no analytics, no forms, no accounts; the only stored state is the reader's own progress, and only with consent
 - Works degraded — content must be readable with JS disabled or consent declined
 
+**Environment variables** (one currently):
+
+| Variable | Scope | Purpose |
+|---|---|---|
+| `NEXT_PUBLIC_PEP_GROUPME_URL` | Browser-public | GroupMe join link for `/PEPGuide/groupme`. When absent, the page shows a text fallback instead of the Join button. Set in Vercel for production/preview; add to `.env.local` for local dev. Kept out of the public repo via `.env.example` placeholder. |
+
 **Architecture Choice**: Static Server Components with narrow client islands.
 
 **Status**: In development — infrastructure complete, content build-out ongoing.
@@ -57,7 +63,7 @@ export type RouteInfo = {
 export const routeMap: Record<string, RouteInfo> = { /* ... */ };
 ```
 
-`routeMap` is **built at module load**, not hand-written. The ordered arrays (`guideSections`, `aptSections`) are iterated to compute each entry's prev/next automatically, then two bespoke entries are patched in: the `rxplanmore` continuation page, and the standalone `quickref` / `faq` pages that sit outside the linear sequence.
+`routeMap` is **built at module load**, not hand-written. The ordered arrays (`guideSections`, `aptSections`) are iterated to compute each entry's prev/next automatically, then bespoke entries are patched in: the `rxplanmore` continuation page, and the standalone `quickref` / `faq` / `groupme` pages that sit outside the linear sequence.
 
 **Why this pattern?**
 
@@ -210,6 +216,7 @@ app/PEPGuide/          # Routes — one folder per page, all Server Components
   [section]/page.tsx   # Content pages
   apts/[sub]/page.tsx  # Depth-2 apartment pages
   rxplan/rxplanmore/   # Depth-2 continuation page
+  groupme/page.tsx     # Standalone — GroupMe join page (env-var-driven Join button)
 
 components/pepguide/   # Guide-only components
   GuidePage.tsx        # Server — page shell
@@ -299,6 +306,11 @@ tests/smoke/
 
 **Cause**: `react/no-unescaped-entities` — raw `'` and `"` in JSX text
 **Fix**: `&apos;`, `&ldquo;`, `&rdquo;`
+
+### 7. Words run together after a `</strong>` or `</em>`
+
+**Cause**: a JSX text node containing an HTML entity loses its **leading** whitespace when compiled, so `<strong>Lead.</strong> Then don&apos;t&hellip;` renders as `Lead.Then don't…`. Text nodes with no entity keep their space, which is why only some bullets break — and neither ESLint nor the type checker flags it.
+**Fix**: emit the space explicitly with `{" "}` immediately after the closing tag, then begin the text on the next line. Trailing whitespace *before* an inline element is unaffected and needs no separator.
 
 ## Quick File Reference
 

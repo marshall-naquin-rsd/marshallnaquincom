@@ -30,6 +30,9 @@ export default function PEPGuidePage() {
           <Link href="/PEPGuide/faq" className="btn-secondary">
             FAQ
           </Link>
+          <Link href="/PEPGuide/groupme" className="btn-secondary ml-auto">
+            PEP GroupMe Chat
+          </Link>
         </div>
         <SectionList sections={sections} />
       </div>

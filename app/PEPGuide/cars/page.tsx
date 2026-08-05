@@ -73,7 +73,7 @@ export default function CarsPage() {
           cross paths with people from those earlier programs — see them around, stay in
           contact, care about them. That&apos;s fine. What isn&apos;t fine, once you&apos;ve
           transitioned into PEP, is giving those peers a ride or having them in your car. They
-          aren&apos;t part of <em>this</em> community&apos;s structure, even though
+          aren&apos;t part of <em>this</em>{" "}community&apos;s structure, even though
           they&apos;re part of Pine Grove, and the passenger rule is about PEP specifically.
           So when I say &ldquo;PEP peers only,&rdquo; I mean only PEP — not Pine Grove
           broadly.

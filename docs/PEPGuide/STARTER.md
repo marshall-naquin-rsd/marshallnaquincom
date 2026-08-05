@@ -100,6 +100,7 @@ marshallnaquincom/
 │   ├── welcome/page.tsx
 │   ├── sunshine/page.tsx
 │   ├── firstassign/page.tsx
+│   ├── presfeedback/page.tsx
 │   ├── cars/page.tsx
 │   ├── rxplan/page.tsx
 │   │   └── rxplanmore/page.tsx      # Continuation page
@@ -146,14 +147,15 @@ Three levels deep at most. The main sections form a linear "next" sequence; Quic
 | `/PEPGuide/welcome` | Welcome | guide home | 1 |
 | `/PEPGuide/sunshine` | Sunshine / Shadow Contract | guide home | 2 |
 | `/PEPGuide/firstassign` | First Assignments | guide home | 3 |
-| `/PEPGuide/cars` | Personal Vehicles | guide home | 4 |
-| `/PEPGuide/apts` | Apartments | guide home | 5 (sub-index) |
+| `/PEPGuide/presfeedback` | Presentations & Feedback | guide home | 4 |
+| `/PEPGuide/cars` | Personal Vehicles | guide home | 5 |
+| `/PEPGuide/apts` | Apartments | guide home | 6 (sub-index) |
 | `/PEPGuide/apts/aptliv` | Apartment Living | apts | apts 1 |
 | `/PEPGuide/apts/aptrules` | Apartment Complex Rules | apts | apts 2 |
 | `/PEPGuide/apts/aptcleaning` | Apartment Cleaning | apts | apts 3 |
 | `/PEPGuide/apts/aptmaint` | Apartment Maintenance Issues | apts | apts 4 |
 | `/PEPGuide/apts/aptpool` | Pool | apts | apts 5 |
-| `/PEPGuide/rxplan` | Treatment Planning | guide home | 6 |
+| `/PEPGuide/rxplan` | Treatment Planning | guide home | 7 |
 | `/PEPGuide/rxplan/rxplanmore` | More About Treatment Planning | rxplan | continuation |
 | `/PEPGuide/quickref` | Quick Reference | guide home | standalone |
 | `/PEPGuide/faq` | FAQ | guide home | standalone |
@@ -182,6 +184,12 @@ Skipping step 3 is the common miss: the page will work but will be invisible to 
 - **Wrap body copy in `.pep-prose`** and lists in `.pep-list`. Do not hand-style paragraphs.
 - **Use `<h2>` for in-page section breaks** — `.pep-prose h2` styles them in the accent color automatically.
 - **Escape apostrophes and quotes in JSX** (`&apos;`, `&ldquo;`) or ESLint's `react/no-unescaped-entities` will fail the build.
+- **⚠️ After `</strong>` or `</em>`, put an explicit `{" "}` before the following text.** A JSX text node that contains an entity loses its *leading* whitespace at compile time, so `<strong>Lead.</strong> Then text with &apos;</strong>` renders as `Lead.Then`. Words silently run together, and nothing warns you. Write the separator explicitly and start the text on the next line:
+
+```tsx
+<strong>Claim your slot.</strong>{" "}
+Say you&apos;re ready — and if the assignment&apos;s been ready a while&hellip;
+```
 - **No real names.** Staff and peers are referred to by role, not by name.
 
 ---
@@ -232,14 +240,21 @@ The guide has its own theme, scoped to the `.pep-theme` class on the wrapper `<d
 
 **File**: `tests/smoke/pepguide.spec.ts` (tagged `@smoke`)
 
-Covers: guide home title, all section links present, `noindex` meta tag, home-page link into the guide, and each subpage's title.
+Covers: guide home title, all section links present, `noindex` meta tag, home-page link into the guide, and every route's title.
 
 ```bash
 npm run dev              # in one terminal
 npm test                 # in another
 ```
 
-**Known issue (Aug 4, 2026)**: the spec still expects `"Cars · PEP Guide"` but the page's metadata title is now `"Personal Vehicles"`. The test list also predates `quickref`, `faq`, `rxplanmore`, and the five apartment subpages. Needs a pass.
+The spec keeps **two** lists, and they are not interchangeable:
+
+- `homeLinks` — only the routes actually linked from the guide home. The apartment subpages and `rxplanmore` are reached from their parents, so adding them here would fail.
+- `pages` — every route plus its expected document title.
+
+A new page normally goes in `pages`; it goes in `homeLinks` only if the guide home links to it directly.
+
+**Refreshed Aug 4, 2026**: all 19 tests pass. The stale `"Cars · PEP Guide"` expectation is corrected to `"Personal Vehicles"`, and `quickref`, `faq`, `rxplanmore`, and the five apartment subpages are now covered.
 
 ---
 
@@ -323,11 +338,13 @@ npm test                 # in another
 - Read-progress checkmarks with consent gate and reset control
 - Apartments split into five subpages; Treatment Planning extended with `rxplanmore`
 - Cookie banner scoped to the guide only
+- Presentations & Feedback added as section 4 — group/assignment lookup, the 7.5/7.5 clock, and the giving/receiving feedback norms
+
+- Smoke tests refreshed to cover every route and its real title
 
 ### 🚧 In Progress
 
 - Real content for remaining stub sections
-- Refresh `tests/smoke/pepguide.spec.ts` for current titles and routes
 
 ### 📋 Planned
 

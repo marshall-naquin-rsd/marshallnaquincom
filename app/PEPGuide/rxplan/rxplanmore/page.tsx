@@ -84,7 +84,7 @@ export default function RxPlanMorePage() {
         </ul>
         <p>
           Two things to understand about those ratings. First, they move in{" "}
-          <strong>quarter-point increments</strong> — you&apos;re not stuck with whole
+          <strong>quarter-point increments</strong>{" "}— you&apos;re not stuck with whole
           numbers, and a quarter point is a real, usable amount of movement. Second, and
           I&apos;ll come back to this below, they don&apos;t lurch around week to week.
         </p>
@@ -112,7 +112,7 @@ export default function RxPlanMorePage() {
           </p>
         </div>
         <p>
-          Specific does <em>not</em> look like &ldquo;Peer X is always doing this&rdquo; or
+          Specific does <em>not</em>{" "}look like &ldquo;Peer X is always doing this&rdquo; or
           &ldquo;I think Peer Y is probably still preoccupied with that.&rdquo; Drop the{" "}
           <em>always</em>. Drop the <em>I think he&apos;s probably</em>. One observed moment —
           a thing that was actually said or actually done, this week, that you actually
@@ -129,13 +129,13 @@ export default function RxPlanMorePage() {
         </p>
         <ul className="pep-list">
           <li>
-            <strong>It&apos;s not the place to play therapist.</strong> Take the observed
+            <strong>It&apos;s not the place to play therapist.</strong>{" "}Take the observed
             behavior, write it down, find the criterion it maps to. That&apos;s your job. You
-            do <em>not</em> need to offer a recommendation, an alternative, or a diagnosis,
+            do <em>not</em>{" "}need to offer a recommendation, an alternative, or a diagnosis,
             and you shouldn&apos;t — that&apos;s what the treatment team is there for.
           </li>
           <li>
-            <strong>It&apos;s not the place to pile on affirmations.</strong> Encouragement is
+            <strong>It&apos;s not the place to pile on affirmations.</strong>{" "}Encouragement is
             good and it has its place, but this activity runs on limited time. Save the praise
             for one-on-one; don&apos;t spend the group&apos;s minutes on it.
           </li>
@@ -148,30 +148,30 @@ export default function RxPlanMorePage() {
           the same at week one as it is a month in.
         </p>
         <p>
-          <strong>At your first session,</strong> you&apos;ll probably mostly sit and listen,
+          <strong>At your first session,</strong>{" "}you&apos;ll probably mostly sit and listen,
           and that&apos;s completely fine. Nobody expects you to arrive with a notebook full
           of sharp observations about people you&apos;ve known for a few days. Take it in.
           Watch how it&apos;s done.
         </p>
         <p>
-          <strong>In the weeks after,</strong> two habits tend to creep in, and they&apos;re
+          <strong>In the weeks after,</strong>{" "}two habits tend to creep in, and they&apos;re
           worth catching in yourself early:
         </p>
         <ul className="pep-list">
           <li>
-            <strong>Vague feedback.</strong> The &ldquo;always,&rdquo; the &ldquo;he seems
+            <strong>Vague feedback.</strong>{" "}The &ldquo;always,&rdquo; the &ldquo;he seems
             like,&rdquo; the general impression. Push yourself back toward the one specific,
             observed moment every time.
           </li>
           <li>
-            <strong>Over-affirming</strong> — especially if you&apos;re the sort of person who
+            <strong>Over-affirming</strong>{" "}— especially if you&apos;re the sort of person who
             tends to rescue or smooth things over. If you notice you&apos;re reaching for
             reassurance to soften every point, that&apos;s a pattern worth naming, and
             it&apos;s often part of your own work.
           </li>
         </ul>
         <p>
-          <strong>Playing therapist</strong> usually shows up later, once you&apos;ve been
+          <strong>Playing therapist</strong>{" "}usually shows up later, once you&apos;ve been
           around long enough to feel like you know the terrain. When you catch yourself
           starting to prescribe instead of observe, that&apos;s your cue to hand it back to
           the team.
@@ -199,7 +199,7 @@ export default function RxPlanMorePage() {
           Watch what you do during the session itself. The peers who are used to being in
           charge will want to run it. The peers who habitually go along to get along will be
           content to sit back and agree with whatever&apos;s already been said. Both of those
-          are <em>behaviors</em> — the same kind of behaviors the plan is trying to surface —
+          are <em>behaviors</em>{" "}— the same kind of behaviors the plan is trying to surface —
           and the treatment planning session is one of the best places to catch yourself in
           the act. So resist the pull of your default. If you&apos;re the take-charge type,
           make room. If you&apos;re the go-along type, say the thing you actually saw even

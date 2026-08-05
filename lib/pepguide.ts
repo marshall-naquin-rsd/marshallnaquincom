@@ -6,6 +6,7 @@ export const guideSections: GuideSection[] = [
   { slug: "welcome", title: "Welcome" },
   { slug: "sunshine", title: "Sunshine / Shadow Contract" },
   { slug: "firstassign", title: "First Assignments" },
+  { slug: "presfeedback", title: "Presentations & Feedback" },
   { slug: "cars", title: "Personal Vehicles" },
   { slug: "apts", title: "Apartments" },
   { slug: "rxplan", title: "Treatment Planning" },
@@ -62,6 +63,17 @@ routeMap[`${guideBasePath}/quickref`] = {
 // FAQ (standalone)
 routeMap[`${guideBasePath}/faq`] = {
   title: "FAQ",
+  parentHref: guideBasePath,
+  parentTitle: "PEP Guide",
+  prevHref: null,
+  prevTitle: null,
+  nextHref: null,
+  nextTitle: null,
+};
+
+// GroupMe (standalone)
+routeMap[`${guideBasePath}/groupme`] = {
+  title: "PEP GroupMe",
   parentHref: guideBasePath,
   parentTitle: "PEP Guide",
   prevHref: null,

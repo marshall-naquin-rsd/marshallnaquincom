@@ -16,7 +16,7 @@ interface GuidePageProps {
  * Shell for every PEP Guide content page.
  *
  * Handles: breadcrumb, h1 + subtitle, ReadTracker, children, footer nav
- * (Back · PEP Guide home · Next section), and the persistent disclaimer.
+ * (Back · Next section, with a centered Home below), and the persistent disclaimer.
  * The home page (/PEPGuide) uses this component too; it just skips the
  * footer nav and disclaimer.
  */
@@ -42,9 +42,6 @@ export default function GuidePage({
     breadcrumbs.push({ href: info.parentHref, title: info.parentTitle ?? "PEP Guide" });
   }
 
-  // Show "PEP Guide home" only when parent isn't already the guide root
-  const showHomeLink = !isHome && info?.parentHref !== guideBasePath;
-
   return (
     <main className="flex flex-1 flex-col items-center px-4 pt-8 pb-32 sm:px-6 sm:pt-12 sm:pb-16">
       {!isHome && slug && <ReadTracker slug={slug} />}
@@ -53,18 +50,15 @@ export default function GuidePage({
         {/* Breadcrumb */}
         {breadcrumbs.length > 0 && (
           <nav aria-label="Breadcrumb">
-            <ol className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-sm text-muted-foreground">
+            <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
               {breadcrumbs.map((crumb, i) => (
-                <li key={crumb.href} className="flex items-center gap-1.5">
+                <li key={crumb.href} className="flex items-center gap-2">
                   {i > 0 && (
                     <span aria-hidden="true" className="text-border">
                       /
                     </span>
                   )}
-                  <Link
-                    href={crumb.href}
-                    className="transition-colors hover:text-foreground"
-                  >
+                  <Link href={crumb.href} className="btn-secondary">
                     {crumb.title}
                   </Link>
                 </li>
@@ -87,26 +81,32 @@ export default function GuidePage({
         {/* Footer navigation */}
         {!isHome && (
           <div className="space-y-4 border-t border-border pt-6">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <div className="flex flex-wrap gap-4">
+            {/* Side cells share equal width so Home sits dead center.
+                On mobile Home drops to its own row to avoid overflow. */}
+            <div className="flex flex-wrap items-center justify-between gap-3 sm:grid sm:grid-cols-[1fr_auto_1fr]">
+              <div className="order-1 flex justify-start">
                 {info?.parentHref && (
                   <BackButton
                     parentHref={info.parentHref}
                     parentTitle={info.parentTitle ?? "PEP Guide"}
+                    className="btn-secondary"
                   />
-                )}
-                {showHomeLink && (
-                  <Link href={guideBasePath} className="btn-quiet">
-                    PEP Guide home
-                  </Link>
                 )}
               </div>
 
-              {info?.nextHref && (
-                <Link href={info.nextHref} className="btn-primary">
-                  {info.nextTitle} →
+              <div className="order-3 flex w-full justify-center sm:order-2 sm:w-auto">
+                <Link href={guideBasePath} className="btn-secondary">
+                  Home
                 </Link>
-              )}
+              </div>
+
+              <div className="order-2 flex justify-end sm:order-3">
+                {info?.nextHref && (
+                  <Link href={info.nextHref} className="btn-primary">
+                    {info.nextTitle} →
+                  </Link>
+                )}
+              </div>
             </div>
 
             <p className="border-t border-border/50 pt-4 text-xs italic text-muted-foreground">

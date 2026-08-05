@@ -16,7 +16,7 @@ export default function WelcomePage() {
         <p>
           Greetings. You can refer to me as former peer M. I began my treatment at PEP in 2018,
           and I&apos;ve been back various times over the years — for both checkups (called{" "}
-          <em>rechecks</em> here) and relapses of sorts. I&apos;ve created this guide as a
+          <em>rechecks</em>{" "}here) and relapses of sorts. I&apos;ve created this guide as a
           companion, not a replacement for the programming binder. We&apos;ll refer back to the
           binder often across the various sections; think of this companion as tips, if you will,
           on how to get the most out of your time here.

@@ -16,7 +16,7 @@ export default function RxPlanPage() {
           If there&apos;s one document that ends up sitting at the center of your whole time
           here, it&apos;s your treatment plan. I want to introduce it to you gently, because
           the first time I saw mine I had two reactions at once — <em>this is a lot</em> and{" "}
-          <em>I have no idea what I&apos;m supposed to do with this.</em> Both were normal.
+          <em>I have no idea what I&apos;m supposed to do with this.</em>{" "}Both were normal.
           Let me walk you through what it is and, just as important, what not to do with it
           yet. As always, the binder and your treatment staff are the real authority;
           I&apos;m just giving you a running start.
@@ -30,7 +30,7 @@ export default function RxPlanPage() {
           section: <strong>do not start filling it out.</strong>
         </p>
         <p>
-          What you <em>should</em> do is start leafing through it. Turn the pages, look at how
+          What you <em>should</em>{" "}do is start leafing through it. Turn the pages, look at how
           it&apos;s laid out, get a feel for the different sections and the kind of
           information it&apos;s asking for. You&apos;re familiarizing yourself, not working
           it. Think of this first pass the way you&apos;d walk through a new house before you
@@ -40,7 +40,7 @@ export default function RxPlanPage() {
         <h2>Wait for the peer mentor</h2>
         <p>
           The reason to hold off is that this process is meant to be taught to you, not
-          figured out alone. The <strong>peer mentor</strong> — one of your peers who&apos;s
+          figured out alone. The <strong>peer mentor</strong>{" "}— one of your peers who&apos;s
           been elected to a program council position — will sit down with you and the other
           newcomers to go over the plan and the process of using it. That walkthrough is where
           it starts to make sense. It&apos;s a lot easier to leaf through the plan knowing
@@ -48,7 +48,7 @@ export default function RxPlanPage() {
           night.
         </p>
         <p>
-          You <em>can</em> also approach your sunshine or another experienced member if
+          You <em>can</em>{" "}also approach your sunshine or another experienced member if
           something is nagging at you and you want a little orientation in the meantime.
           That&apos;s fine. But if I were doing it over, I&apos;d wait for the peer mentor
           before beginning any actual work on the plan. Let the person whose job it is to
@@ -70,7 +70,7 @@ export default function RxPlanPage() {
         <p>
           What the plan is really for is getting our behavior <em>out of hiding</em>. The
           whole aim is that if you thought or acted in some old, maladaptive way, you now{" "}
-          <em>know</em> it — you can see it and name it in yourself. That&apos;s the win. A
+          <em>know</em>{" "}it — you can see it and name it in yourself. That&apos;s the win. A
           plan that surfaces a hard truth about you is doing exactly what it&apos;s supposed
           to do, even when the number next to it isn&apos;t the one you&apos;d have picked.
           Once you stop treating it as a scorecard to beat and start treating it as a mirror
@@ -78,7 +78,7 @@ export default function RxPlanPage() {
         </p>
         <p>
           So: get the plan, leaf through it, wait for the peer mentor, and hold onto{" "}
-          <em>progress, not perfection.</em> That&apos;s the entire first step. The deeper
+          <em>progress, not perfection.</em>{" "}That&apos;s the entire first step. The deeper
           mechanics — how the scoring works, how peer feedback happens, and how the whole
           community weighs in — I&apos;ve laid out in the next section.
         </p>

@@ -29,6 +29,23 @@ export const searchEntries: SearchEntry[] = [
     keywords: ["paperwork", "binder", "community guidelines", "self-assessments", "assignments", "treatment plan", "notebook", "intake"],
   },
   {
+    title: "Presentations & Feedback",
+    href: `${guideBasePath}/presfeedback`,
+    summary: "Which assignments get presented in which group, how presenting works, and what's expected when you give and receive feedback.",
+    keywords: [
+      "presentation", "presentations", "present", "presenting", "claim your slot", "who's ready",
+      "feedback", "verbal feedback", "giving feedback", "receiving feedback", "when you said this i felt",
+      "7.5 minutes", "seven and a half", "clock", "time limit",
+      "groups", "group", "group psych", "group psychotherapy", "spirituality", "spiritual river",
+      "vocational", "vocational timeline", "boundary violations index", "family systems", "genogram",
+      "values", "personality", "personality trait schemas", "addictions and compulsions", "ac",
+      "chemical timeline", "step work", "steps", "addictive cycle", "sexual issues", "si",
+      "professional sexual misconduct", "psm", "clergy", "men's", "women's",
+      "relapse prevention", "relapse prevention plan", "relapse cycle",
+      "thanks for the feedback", "book", "note-taking", "notes", "thank you", "listen",
+    ],
+  },
+  {
     title: "Personal Vehicles / Cars",
     href: `${guideBasePath}/cars`,
     summary: "Car search policy, when keys are held, who can drive, who can ride, and the three-person rule.",
@@ -101,6 +118,16 @@ export const searchEntries: SearchEntry[] = [
     href: `${guideBasePath}/faq`,
     summary: "Short answers to the questions incoming peers ask most, with links to the full sections.",
     keywords: ["faq", "questions", "answers", "frequently asked", "common questions", "can i", "am i allowed", "rules"],
+  },
+  {
+    title: "PEP GroupMe",
+    href: `${guideBasePath}/groupme`,
+    summary: "How to join the peer group chat, a few norms, and what to do if the link has expired.",
+    keywords: [
+      "groupme", "group me", "group chat", "chat", "text", "text thread", "messaging",
+      "join", "add me", "add to group", "message everyone", "group text",
+      "communication", "contact", "app",
+    ],
   },
 ];
 

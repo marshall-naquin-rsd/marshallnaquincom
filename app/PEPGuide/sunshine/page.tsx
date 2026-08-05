@@ -77,7 +77,7 @@ export default function SunshinePage() {
           This part is worth holding onto, because it cuts both ways.
         </p>
         <p>
-          It is <em>always</em> your responsibility, as the shadow, to make sure you&apos;re
+          It is <em>always</em>{" "}your responsibility, as the shadow, to make sure you&apos;re
           with someone. That one&apos;s on you — not on anyone tracking you down. If you
           can&apos;t find your sunshine, you find another peer. You don&apos;t just head out.
         </p>
