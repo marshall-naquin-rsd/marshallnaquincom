@@ -15,12 +15,6 @@ export default function Home() {
           >
             Downloads
           </Link>
-          <Link
-            href="/PEPGuide"
-            className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-          >
-            PEP Guide
-          </Link>
         </div>
       </div>
     </main>

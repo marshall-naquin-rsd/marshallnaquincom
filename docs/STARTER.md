@@ -364,6 +364,11 @@ const supabase = createClient();
 - Section data in `lib/pepguide.ts` (single source of truth for slugs/titles/base path)
 - See `docs/PEPGuide/` for that section's own STARTER and REF files
 
+### ✅ PEP Guide Moved Out (Aug 13, 2026)
+
+- The PEP Guide now lives in its own repo: https://github.com/marshall-naquin-rsd/pepguide
+- Removed the `/PEPGuide` section, home-page link, and guide-specific CSS/fonts from this site
+
 ### 🚧 Phase 2 In Progress
 
 - Design system planning (optional — copy `docs/design_page_template.tsx` to `app/design/page.tsx` if desired)
@@ -418,5 +423,4 @@ const supabase = createClient();
 - **Architecture**: `docs/REF_architecture.md`
 - **SEO**: `docs/REF_SEO.md` [IF APPLICABLE]
 - **Styling**: `docs/REF_styling.md`
-- **PEP Guide section**: `docs/PEPGuide/STARTER.md` (plus its own REF_architecture and REF_styling)
 - **Additional references**: Create REF files as needed for your project
