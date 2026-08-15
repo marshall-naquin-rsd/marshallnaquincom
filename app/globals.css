@@ -25,6 +25,12 @@
   --color-card: var(--card);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  --color-gbc-base: #090706;
+  --color-gbc-ink: #d8d1a3;
+  --color-gbc-warm: #bfa68b;
+  --color-gbc-base-warm: #321e12;
+  --color-gbc-amber: #643d20;
 }
 
 @media (prefers-color-scheme: dark) {

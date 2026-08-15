@@ -1,0 +1,126 @@
+.gbc {
+  background: var(--color-gbc-base);
+  color: var(--color-gbc-ink);
+  min-height: 100vh;
+  font-family: var(--font-gbc-archivo), var(--font-gbc-inter), sans-serif;
+}
+
+.gbc-shell {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 430px;
+}
+
+.gbc-kicker {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-gbc-warm);
+}
+
+.gbc-display {
+  font-family: var(--font-gbc-black), sans-serif;
+  font-size: 34px;
+  line-height: 1.05;
+  letter-spacing: -0.6px;
+  color: var(--color-gbc-ink);
+}
+
+.gbc-cta-solid {
+  display: flex;
+  height: 52px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  background: var(--color-gbc-ink);
+  color: var(--color-gbc-base);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+}
+
+.gbc-cta-ghost {
+  display: flex;
+  height: 48px;
+  width: 200px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-gbc-ink);
+  border-radius: 2px;
+  color: var(--color-gbc-ink);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+}
+
+.gbc-link-solid,
+.gbc-link-outline {
+  display: flex;
+  height: 56px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 18px;
+  border-radius: 2px;
+}
+
+.gbc-link-solid {
+  background: var(--color-gbc-ink);
+  color: var(--color-gbc-base);
+}
+
+.gbc-link-outline {
+  border: 1px solid var(--color-gbc-ink);
+  color: var(--color-gbc-ink);
+}
+
+.gbc-menu-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--color-gbc-ink);
+}
+
+.gbc-menu-panel {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-gbc-base);
+  padding: 24px;
+}
+
+.gbc-menu-link {
+  display: block;
+  padding-block: 16px;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-gbc-ink) 18%, transparent);
+  color: var(--color-gbc-ink);
+  font-size: 15px;
+  letter-spacing: 0.4px;
+}
+
+.gbc-font-archivo {
+  font-family: var(--font-gbc-archivo), sans-serif;
+}
+
+.gbc-font-inter {
+  font-family: var(--font-gbc-inter), sans-serif;
+}
+
+.gbc-font-fraunces {
+  font-family: var(--font-gbc-fraunces), serif;
+}
+
+.gbc-font-black {
+  font-family: var(--font-gbc-black), sans-serif;
+}
