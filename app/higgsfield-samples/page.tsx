@@ -113,6 +113,7 @@ export default function HiggsfieldSamplesPage() {
                     width={720}
                     height={1280}
                     unoptimized
+                    loading={sample.id === "post2" ? "eager" : "lazy"}
                     className="h-auto w-full rounded-md border border-border"
                   />
                   <figcaption className="text-sm text-muted-foreground">

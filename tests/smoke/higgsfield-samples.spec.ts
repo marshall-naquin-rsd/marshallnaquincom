@@ -37,7 +37,9 @@ test.describe("Higgsfield samples @smoke", () => {
     ).toBeVisible();
 
     await expect(page.locator("video")).toHaveCount(3);
-    await expect(page.getByRole("img")).toHaveCount(3);
+    await expect(
+      page.getByRole("img", { name: /end-card still/i }),
+    ).toHaveCount(3);
 
     for (const asset of assets) {
       const response = await request.get(asset);
