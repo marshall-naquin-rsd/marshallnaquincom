@@ -347,6 +347,13 @@ const supabase = createClient();
 
 ## PROJECT PROGRESS
 
+### ✅ Area 7 Mini-Conference Preview (Sep 13, 2026)
+
+- Unlisted `/area7` preview of the 2027 Area 7 Mini-Conference page (noindexed)
+- Volunteer form is client-side only for review; it does not persist signups
+- Home page link added beside Downloads
+- See `docs/archive/TASK_area7_conference_preview.md` for details
+
 ### ✅ Phase 1 Complete (June 21, 2026)
 
 - Next.js 16 + React 19 + TypeScript scaffolded

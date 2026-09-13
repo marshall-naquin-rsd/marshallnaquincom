@@ -15,6 +15,12 @@ export default function Home() {
           >
             Downloads
           </Link>
+          <Link
+            href="/area7"
+            className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            Area 7 Conference
+          </Link>
         </div>
       </div>
     </main>
