@@ -542,7 +542,14 @@ body {
 .booking-form {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 22px;
+}
+
+.booking-form .form-grid,
+.booking-form .form-error,
+.booking-form .form-success {
+  width: 100%;
 }
 
 .form-grid {
