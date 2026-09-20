@@ -18,8 +18,10 @@ test.describe("Home page @smoke", () => {
     await expect(nav.getByRole("link", { name: "Topics" })).toBeVisible();
     await expect(nav.getByRole("link", { name: "Formats" })).toBeVisible();
     await expect(nav.getByRole("link", { name: "About" })).toBeVisible();
-    await expect(nav.getByRole("link", { name: "Book" })).toBeVisible();
+    await expect(nav.getByRole("link", { name: "Book a talk" })).toBeVisible();
 
+    await expect(page.getByRole("heading", { name: "Two short samples" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "How long a room has me" })).toBeVisible();
     await expect(page.locator("audio")).toHaveCount(2);
     await expect(
       page.getByRole("heading", { name: "Arcade, candy, and the draw" }),
@@ -42,5 +44,16 @@ test.describe("Home page @smoke", () => {
     await expect(page.locator('a[href="/area7"]')).toHaveCount(0);
     await expect(page.locator('a[href="/GBC"]')).toHaveCount(0);
     await expect(page.locator('a[href="/higgsfield-samples"]')).toHaveCount(0);
+  });
+
+  test("phone chrome is name plus Book only", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/");
+
+    const header = page.locator("header");
+    await expect(header.getByRole("link", { name: "Marshall Naquin" })).toBeVisible();
+    await expect(header.getByRole("link", { name: "Book", exact: true })).toBeVisible();
+    await expect(header.getByRole("link", { name: "Talks" })).toHaveCount(0);
+    await expect(header.getByRole("link", { name: "Book a talk" })).toHaveCount(0);
   });
 });

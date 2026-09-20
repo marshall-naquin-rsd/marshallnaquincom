@@ -76,7 +76,7 @@
 - **Authentication**: None
 - **Database**: None initially
 - **Testing**: Playwright
-- **Email**: Booking form posts to Formspree (`FORMSPREE_FORM_ID`) or `BOOKING_WEBHOOK_URL`
+- **Email**: Booking form posts to `/api/booking` and sends via Resend (`RESEND_API_KEY`, `BOOKING_FROM_EMAIL`)
 - **Package Manager**: npm
 
 ### Key Dependencies
@@ -122,8 +122,8 @@ marshallnaquincom/
 
 ```env
 NEXT_PUBLIC_SITE_URL=https://marshallnaquin.com
-FORMSPREE_FORM_ID=
-# or BOOKING_WEBHOOK_URL=
+RESEND_API_KEY=
+BOOKING_FROM_EMAIL=Marshall Naquin <booking@marshallnaquin.com>
 ```
 
 ### Commands
@@ -381,7 +381,8 @@ const supabase = createClient();
 ### ✅ Speaker home (Sep 20, 2026)
 
 - Public speaker site at `/` with must-keep section order (masthead through colophon)
-- MN.com-native `/booking` inquiry (not a clone of the old PSC speaking form)
+- Visual SoT: Marshall-approved Claude Design frames (layout, type, color, microcopy)
+- MN.com-native `/booking` inquiry via Resend to marshall.naquin@professionalsupportconsulting.com
 - `/about` speaker bio; speaking samples in `public/audio/`
 - Staging/WIP (`/downloads`, `/area7`, `/GBC`, `/higgsfield-samples`) stay reachable, unlinked, noindex
 

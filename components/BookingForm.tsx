@@ -1,7 +1,14 @@
 "use client";
 
+import Link from "next/link";
 import { useState, type FormEvent } from "react";
-import { audienceTypes, formatOptions } from "@/lib/copy";
+import {
+  bookingPage,
+  formatOptions,
+  hero,
+  roomOptions,
+  samplesIntro,
+} from "@/lib/copy";
 
 type Status =
   | { state: "idle" }
@@ -11,6 +18,7 @@ type Status =
 
 export function BookingForm() {
   const [status, setStatus] = useState<Status>({ state: "idle" });
+  const [room, setRoom] = useState("");
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -36,6 +44,7 @@ export function BookingForm() {
       }
 
       form.reset();
+      setRoom("");
       setStatus({ state: "success" });
     } catch {
       setStatus({
@@ -47,23 +56,43 @@ export function BookingForm() {
 
   if (status.state === "success") {
     return (
-      <p className="form-success" role="status">
-        Thanks. I’ll write back.
-      </p>
+      <div className="booking-sent">
+        <p className="eyebrow eyebrow-ac">{bookingPage.eyebrow}</p>
+        <h1 className="page-title">{bookingPage.sentTitle}</h1>
+        <div className="raised-card wait-card">
+          <h2 className="wait-title">{bookingPage.whileYouWait}</h2>
+          <p className="card-body">{samplesIntro}</p>
+          <Link className="cta-listen" href="/#samples">
+            {hero.secondaryCta}
+          </Link>
+        </div>
+      </div>
     );
   }
 
   return (
-    <form className="booking-form" onSubmit={onSubmit} noValidate>
-      <p className="honeypot" aria-hidden="true">
-        <label htmlFor="company">Company</label>
-        <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
-      </p>
+    <>
+      <div className="booking-intro">
+        <p className="eyebrow eyebrow-ac">{bookingPage.eyebrow}</p>
+        <h1 className="page-title">{bookingPage.title}</h1>
+        <p className="lead">{bookingPage.lead}</p>
+      </div>
 
-      <div className="form-grid">
-        <p>
+      <form className="booking-form" onSubmit={onSubmit} noValidate>
+        <p className="honeypot" aria-hidden="true">
+          <label htmlFor="company">Company</label>
+          <input
+            id="company"
+            name="company"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+          />
+        </p>
+
+        <div className="form-field">
           <label className="form-label" htmlFor="name">
-            Name
+            {bookingPage.name}
           </label>
           <input
             className="form-input"
@@ -73,10 +102,11 @@ export function BookingForm() {
             autoComplete="name"
             required
           />
-        </p>
-        <p>
+        </div>
+
+        <div className="form-field">
           <label className="form-label" htmlFor="email">
-            Email
+            {bookingPage.email}
           </label>
           <input
             className="form-input"
@@ -86,10 +116,12 @@ export function BookingForm() {
             autoComplete="email"
             required
           />
-        </p>
-        <p className="form-span">
+        </div>
+
+        <div className="form-field">
           <label className="form-label" htmlFor="organization">
-            Organization or event name
+            {bookingPage.organization}{" "}
+            <span className="form-optional">{bookingPage.organizationHint}</span>
           </label>
           <input
             className="form-input"
@@ -97,82 +129,75 @@ export function BookingForm() {
             name="organization"
             type="text"
             autoComplete="organization"
-            required
           />
-        </p>
-        <p>
-          <label className="form-label" htmlFor="audienceType">
-            Audience type
-          </label>
-          <select className="form-select" id="audienceType" name="audienceType">
-            <option value="">Select one</option>
-            {audienceTypes.map((option) => (
-              <option key={option} value={option}>
+        </div>
+
+        <fieldset className="form-field room-field">
+          <legend className="form-label">{bookingPage.room}</legend>
+          <input type="hidden" name="room" value={room} />
+          <div className="room-grid">
+            {roomOptions.map((option) => (
+              <button
+                key={option}
+                type="button"
+                className="room-card"
+                aria-pressed={room === option}
+                onClick={() => setRoom(room === option ? "" : option)}
+              >
                 {option}
-              </option>
+              </button>
             ))}
-          </select>
-        </p>
-        <p>
+          </div>
+        </fieldset>
+
+        <div className="form-field">
           <label className="form-label" htmlFor="format">
-            Format
+            {bookingPage.format}
           </label>
           <select className="form-select" id="format" name="format">
-            <option value="">Select one</option>
             {formatOptions.map((option) => (
               <option key={option} value={option}>
                 {option}
               </option>
             ))}
           </select>
-        </p>
-        <p>
-          <label className="form-label" htmlFor="preferredDates">
-            Preferred dates
+        </div>
+
+        <div className="form-field">
+          <label className="form-label" htmlFor="dates">
+            {bookingPage.dates}
           </label>
-          <input
-            className="form-input"
-            id="preferredDates"
-            name="preferredDates"
-            type="text"
-            placeholder="Month, range, or still open"
-          />
-        </p>
-        <p>
-          <label className="form-label" htmlFor="location">
-            Location or city
-          </label>
-          <input
-            className="form-input"
-            id="location"
-            name="location"
-            type="text"
-            autoComplete="address-level2"
-          />
-        </p>
-        <p className="form-span">
+          <input className="form-input" id="dates" name="dates" type="text" />
+        </div>
+
+        <div className="form-field">
           <label className="form-label" htmlFor="message">
-            Message
+            {bookingPage.message}
           </label>
           <textarea
             className="form-textarea"
             id="message"
             name="message"
-            rows={6}
-            required
+            rows={4}
           />
-        </p>
-      </div>
+        </div>
 
-      {status.state === "error" ? (
-        <p className="form-error" role="alert">
-          {status.message}
-        </p>
-      ) : null}
+        {status.state === "error" ? (
+          <p className="form-error" role="alert">
+            {status.message}
+          </p>
+        ) : null}
 
-      <button className="btn-primary" type="submit" disabled={status.state === "sending"}>
-        {status.state === "sending" ? "Sending…" : "Send"}
-      </button>
-    </form>
+        <div className="form-actions">
+          <button
+            className="btn-primary form-submit"
+            type="submit"
+            disabled={status.state === "sending"}
+          >
+            {status.state === "sending" ? bookingPage.sending : bookingPage.send}
+          </button>
+        </div>
+      </form>
+    </>
   );
 }

@@ -2,51 +2,51 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { site } from "@/lib/copy";
+import { hero, site } from "@/lib/copy";
 
 const links = [
-  { href: "/#talks", label: "Talks" },
+  { href: "/#talk", label: "Talks" },
   { href: "/#topics", label: "Topics" },
   { href: "/#formats", label: "Formats" },
-  { href: "/about", label: "About" },
+  { href: "/#about", label: "About" },
 ] as const;
 
 export function Masthead() {
   const pathname = usePathname();
+  const onBooking = pathname === "/booking";
 
   return (
     <header className="masthead">
       <Link href="/" className="name-mark">
-        <span className="name-mark-serif">{site.name}</span>
-        <span className="name-mark-cred">M.D.</span>
+        {site.name}
       </Link>
-      <input
-        type="checkbox"
-        id="navtoggle"
-        className="navtoggle-input"
-        aria-label="Toggle navigation"
-      />
-      <label className="navbtn" htmlFor="navtoggle">
-        Menu
-      </label>
-      <nav className="navlist" aria-label="Primary">
+
+      <nav className="nav-desktop" aria-label="Primary">
         {links.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            aria-current={pathname === link.href ? "page" : undefined}
-          >
+          <Link key={link.href} href={link.href}>
             {link.label}
           </Link>
         ))}
-        <Link
-          href="/booking"
-          className="btn-primary nav-book"
-          aria-current={pathname === "/booking" ? "page" : undefined}
-        >
+        {onBooking ? (
+          <span className="btn-primary nav-book" aria-current="page">
+            {hero.primaryCta}
+          </span>
+        ) : (
+          <Link href="/booking" className="btn-primary nav-book">
+            {hero.primaryCta}
+          </Link>
+        )}
+      </nav>
+
+      {onBooking ? (
+        <Link href="/" className="nav-phone-back">
+          Back
+        </Link>
+      ) : (
+        <Link href="/booking" className="btn-primary nav-phone-book">
           Book
         </Link>
-      </nav>
+      )}
     </header>
   );
 }

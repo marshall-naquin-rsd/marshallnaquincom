@@ -6,12 +6,14 @@ const sourceSerif = Source_Serif_4({
   subsets: ["latin"],
   variable: "--font-source-serif",
   display: "swap",
+  style: ["normal", "italic"],
 });
 
 const sourceSans = Source_Sans_3({
   subsets: ["latin"],
   variable: "--font-source-sans",
   display: "swap",
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {

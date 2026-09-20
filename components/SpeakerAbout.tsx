@@ -1,30 +1,45 @@
 import Image from "next/image";
-import { about, hero } from "@/lib/copy";
+import Link from "next/link";
+import { about, aboutEyebrow } from "@/lib/copy";
 
-export function SpeakerAbout() {
+type SpeakerAboutProps = {
+  headingLevel?: "h1" | "h2";
+  showMore?: boolean;
+  showPortrait?: boolean;
+  hidePortraitOnPhone?: boolean;
+};
+
+export function SpeakerAbout({
+  headingLevel = "h2",
+  showMore = false,
+  showPortrait = false,
+  hidePortraitOnPhone = false,
+}: SpeakerAboutProps) {
+  const Heading = headingLevel;
+
   return (
-    <div className="about-block">
-      <div className="photo-pair">
+    <div className="about-grid">
+      <div className="about-copy">
+        <p className="eyebrow">{aboutEyebrow}</p>
+        <Heading className="section-title">{about.who}</Heading>
+        <p className="speaker-cred">{about.cred}</p>
+        <p className="speaker-bio">{about.bio}</p>
+        {showMore ? (
+          <Link className="cta-listen" href="/about">
+            {about.more}
+          </Link>
+        ) : null}
+      </div>
+      {showPortrait ? (
         <Image
-          src="/images/marshall-naquin-md-portrait.jpg"
-          alt={hero.portraitAlt}
-          width={1024}
-          height={1280}
-          sizes="(max-width: 720px) 45vw, 190px"
-        />
-        <Image
+          className={hidePortraitOnPhone ? "portrait about-portrait" : "portrait"}
           src="/images/marshall-and-tracey.jpg"
           alt={about.pairAlt}
           width={1280}
           height={1600}
-          sizes="(max-width: 720px) 45vw, 190px"
+          sizes="240px"
         />
-      </div>
-      <div>
-        <p className="speaker-who">{about.who}</p>
-        <p className="speaker-cred">{about.cred}</p>
-        <p className="speaker-bio">{about.bio}</p>
-      </div>
+      ) : null}
     </div>
   );
 }

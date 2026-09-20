@@ -11,10 +11,8 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <main id="main" className="wrap pad-page">
-      <p className="eyebrow">The speaker</p>
-      <h1 className="page-title">About the speaker</h1>
-      <SpeakerAbout />
+    <main id="main" className="band">
+      <SpeakerAbout headingLevel="h1" showPortrait />
       <p className="about-booking">
         <Link className="btn-primary" href="/booking">
           {bookingBand.cta}

@@ -8,7 +8,7 @@ export const site = {
 } as const;
 
 export const hero = {
-  eyebrow: "Recovery speaker · Emergency physician",
+  eyebrow: "Recovery speaker",
   h1: "It took trip after trip to treatment before I finally stopped gambling.",
   lead: "Talks on addiction and the long road to recovery, for people in treatment and recovery, Gamblers Anonymous groups and other 12-step meetings, and the clinicians, staff, and programs that work with them.",
   primaryCta: "Book a talk",
@@ -23,22 +23,35 @@ export const bothSides = {
   quote: "My best ideas bought me this chair right here.",
 } as const;
 
+export const samplesEyebrow = "Speaking samples";
+export const samplesHeading = "Two short samples";
 export const samplesIntro =
   "Two short samples from “Both Sides of the White Coat.” The full talk is not posted here.";
+export const downloadSample = "Download this sample (MP3)";
+
+export const topicsEyebrow = "Topics";
+export const topicsHeading = "What I speak about";
+
+export const takeawaysEyebrow = "Outcomes";
+export const takeawaysHeading = "What a room takes away";
+
+export const formatsEyebrow = "Formats";
+export const formatsHeading = "How long a room has me";
+export const otherSpeakersEyebrow = "Other speakers";
+
+export const aboutEyebrow = "About the speaker";
 
 export const samples = [
   {
     title: "Arcade, candy, and the draw",
     body: "Seventh grade, a video arcade, and the candy that explains the draw. About a minute and forty seconds.",
     src: "/audio/arcade-candy-thats-the-draw.mp3",
-    duration: "About 1:40",
     label: "Arcade, candy, and the draw audio sample",
   },
   {
     title: "No idea what addiction was",
     body: "Board certified for years, and still no idea what addiction was. About a minute.",
     src: "/audio/credentials-no-idea-what-addiction-was.mp3",
-    duration: "About 1:00",
     label: "No idea what addiction was audio sample",
   },
 ] as const;
@@ -53,12 +66,40 @@ export const topics = [
 ] as const;
 
 export const takeaways = [
-  "That understanding is not treatment. I knew the science of my own addiction cold and kept gambling anyway. “These programs didn’t fail. They were all very useful. I just wasn’t willing.”",
-  "The one question I ask anyone who wants to go back to treatment…one more time: “What do you think is going to be different this time?”",
-  "That recovery is a today thing, not a forever thing. Forever is what kept me paralyzed.",
-  "Gambling isn’t the only thing. I’ve dealt for years with depression, emotional eating, and anger, and I handle them the same way, one day at a time. As my sponsor says, each day I try to be a little bit better than I was yesterday.",
-  "For the staff in the room: what the people you refer are actually walking into, from someone who walked into it more than once.",
-  "Why honesty with a program is the practical move and not the noble one. The fastest way to damage that relationship is to lie to them, or to skip facts that are going to come out anyway.",
+  {
+    before: "That understanding is not treatment. I knew the science of my own addiction cold and kept gambling anyway. ",
+    quote: "These programs didn’t fail. They were all very useful. I just wasn’t willing.",
+    after: "",
+  },
+  {
+    before: "The one question I ask anyone who wants to go back to treatment…one more time: ",
+    quote: "What do you think is going to be different this time?",
+    after: "",
+  },
+  {
+    before:
+      "That recovery is a today thing, not a forever thing. Forever is what kept me paralyzed.",
+    quote: "",
+    after: "",
+  },
+  {
+    before:
+      "Gambling isn’t the only thing. I’ve dealt for years with depression, emotional eating, and anger, and I handle them the same way, one day at a time. As my sponsor says, each day I try to be a little bit better than I was yesterday.",
+    quote: "",
+    after: "",
+  },
+  {
+    before:
+      "For the staff in the room: what the people you refer are actually walking into, from someone who walked into it more than once.",
+    quote: "",
+    after: "",
+  },
+  {
+    before:
+      "Why honesty with a program is the practical move and not the noble one. The fastest way to damage that relationship is to lie to them, or to skip facts that are going to come out anyway.",
+    quote: "",
+    after: "",
+  },
 ] as const;
 
 export const formats = [
@@ -79,39 +120,52 @@ export const about = {
   who: "Marshall R. Naquin, M.D.",
   cred: "Board certified, American Board of Emergency Medicine",
   bio: "“My name’s Marshall, and I’m a compulsive gambler.” That is how Marshall R. Naquin, M.D., introduces himself. He is a board-certified emergency physician in recovery from gambling addiction, and it took him trip after trip to treatment before it stuck. His work has ranged from offshore in the oil and gas industry to medical director of an emergency room. He speaks to people in treatment and recovery, and to the clinicians, staff, and programs that work with them, about addiction and the long road back.",
+  more: "More about me, and how I got here",
   pairAlt: "Marshall Naquin with his wife, Tracey, on a dock at sunset",
 } as const;
 
 export const bookingBand = {
-  title: "Book a talk",
-  body: "Tell me about the room and the dates. I’ll write back.",
+  title: "One message starts it.",
+  body: "Include your dates and your audience.",
   cta: "Book a talk",
 } as const;
 
 export const bookingPage = {
-  title: "Book a talk",
-  lead: "Tell me the room, the dates, and what you need. I’ll write back.",
+  eyebrow: "Booking",
+  title: "One message starts it.",
+  lead: "Include your dates and your audience. I read these myself.",
+  send: "Send it",
+  sending: "Sending…",
+  sentTitle: "Message sent.",
+  whileYouWait: "While you wait",
+  name: "Your name",
+  email: "Email",
+  organization: "Organization",
+  organizationHint: "optional",
+  room: "Who is in the room",
+  format: "Format",
+  dates: "Dates you have in mind",
+  message: "Anything else I should know",
 } as const;
 
 export const colophon = {
   disclaimer:
-    "Everything here is informational and based on my personal experience. Visitors remain ultimately responsible for their own decision-making. It’s not legal advice, not medical care, and not a substitute for either. No physician-patient relationship is created by reading this site or speaking with me. If you’re in immediate danger, call",
-  consulting: "Health-program guides",
+    "Everything here is informational and based on my personal experience. Visitors remain ultimately responsible for their own decision-making. It’s not legal advice, not medical care, and not a substitute for either. No physician-patient relationship is created by reading this site or speaking with me. If you’re in immediate danger, call 988.",
+  consulting: "Consulting",
 } as const;
 
-export const audienceTypes = [
-  "Treatment or recovery room",
-  "GA or 12-step meeting",
-  "Conference or staff",
-  "Mixed room",
-  "Other",
+export const roomOptions = [
+  "People in treatment and recovery",
+  "A Gamblers Anonymous or other 12-step meeting",
+  "Clinicians, staff, or a program",
+  "A family program",
 ] as const;
 
 export const formatOptions = [
-  "Short engagement",
-  "Keynote",
-  "Workshop",
-  "Staff in-service",
-  "Family program",
-  "Other / not sure",
+  "Short engagement, 30 to 45 minutes",
+  "Keynote, 1 hour",
+  "Workshop, half day",
+  "Staff in-service, full day",
+  "Family program on Zoom, 2 to 3 days",
+  "Not sure yet",
 ] as const;

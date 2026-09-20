@@ -4,20 +4,30 @@ import { SpeakerAbout } from "@/components/SpeakerAbout";
 import {
   bothSides,
   bookingBand,
+  downloadSample,
   formats,
+  formatsEyebrow,
+  formatsHeading,
   hero,
   otherSpeakers,
+  otherSpeakersEyebrow,
   samples,
+  samplesEyebrow,
+  samplesHeading,
   samplesIntro,
   takeaways,
+  takeawaysEyebrow,
+  takeawaysHeading,
   topics,
+  topicsEyebrow,
+  topicsHeading,
 } from "@/lib/copy";
 
 export default function Home() {
   return (
-    <main id="main">
-      <section className="wrap hero pad-band">
-        <div>
+    <main>
+      <section id="main" className="hero">
+        <div className="hero-copy">
           <p className="eyebrow">{hero.eyebrow}</p>
           <h1 className="h1-hero">{hero.h1}</h1>
           <p className="lead">{hero.lead}</p>
@@ -25,94 +35,118 @@ export default function Home() {
             <Link className="btn-primary" href="/booking">
               {hero.primaryCta}
             </Link>
-            <a className="cta-quiet" href="#samples">
+            <a className="cta-listen" href="#samples">
               {hero.secondaryCta}
             </a>
           </div>
         </div>
         <Image
-          className="hero-portrait"
+          className="portrait hero-portrait"
           src="/images/marshall-naquin-md-portrait.jpg"
           alt={hero.portraitAlt}
           width={1024}
           height={1280}
-          sizes="(max-width: 720px) 180px, 260px"
+          sizes="(max-width: 720px) 100vw, 240px"
           priority
         />
       </section>
 
-      <section id="talks" className="night-band">
-        <div className="wrap">
-          <p className="eyebrow">{bothSides.eyebrow}</p>
+      <section id="talk" className="night-band">
+        <div className="inner-900 night-inner">
+          <p className="eyebrow night-eyebrow">{bothSides.eyebrow}</p>
           <h2 className="night-title">{bothSides.title}</h2>
           <p className="night-body">{bothSides.body}</p>
-          <blockquote className="night-quote">
-            <p>“{bothSides.quote}”</p>
-          </blockquote>
+          <blockquote className="night-quote">“{bothSides.quote}”</blockquote>
+          <div className="night-listen">
+            <a className="btn-night" href="#samples">
+              {hero.secondaryCta}
+            </a>
+          </div>
         </div>
       </section>
 
-      <section id="samples" className="wrap pad-band">
-        <h2 className="eyebrow eyebrow-lg">Speaking samples</h2>
-        <p className="section-lead">{samplesIntro}</p>
-        <div className="sample-cards">
-          {samples.map((sample) => (
-            <article className="raised-card" key={sample.src}>
-              <h3 className="card-title">{sample.title}</h3>
-              <p>{sample.body}</p>
-              <p className="sample-duration">{sample.duration}</p>
-              <audio controls preload="metadata" aria-label={sample.label}>
-                <source src={sample.src} type="audio/mpeg" />
-                <a href={sample.src}>Download this sample (MP3)</a>
-              </audio>
-            </article>
-          ))}
+      <section id="samples" className="band">
+        <div className="inner-900 stack-16">
+          <p className="eyebrow">{samplesEyebrow}</p>
+          <h2 className="section-title">{samplesHeading}</h2>
+          <p className="section-lead">{samplesIntro}</p>
+          <div className="sample-cards">
+            {samples.map((sample) => (
+              <article className="raised-card" key={sample.src}>
+                <h3 className="card-title">{sample.title}</h3>
+                <p className="card-body">{sample.body}</p>
+                <audio controls preload="metadata" aria-label={sample.label}>
+                  <source src={sample.src} type="audio/mpeg" />
+                </audio>
+                <a href={sample.src} download>
+                  {downloadSample}
+                </a>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section id="topics" className="wrap pad-band">
-        <h2 className="eyebrow eyebrow-lg">What I speak about</h2>
-        <ul className="topic-chips">
-          {topics.map((topic) => (
-            <li key={topic}>{topic}</li>
-          ))}
-        </ul>
+      <section id="topics" className="band band-rule">
+        <div className="inner-900 stack-16">
+          <p className="eyebrow">{topicsEyebrow}</p>
+          <h2 className="section-title">{topicsHeading}</h2>
+          <ul className="rule-list">
+            {topics.map((topic) => (
+              <li key={topic}>{topic}</li>
+            ))}
+          </ul>
+        </div>
       </section>
 
-      <section id="takeaways" className="wrap pad-band">
-        <h2 className="eyebrow eyebrow-lg">What a room takes away</h2>
-        <ul className="takeaway-list">
-          {takeaways.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
+      <section id="takeaways" className="band band-rule">
+        <div className="inner-900 stack-16">
+          <p className="eyebrow">{takeawaysEyebrow}</p>
+          <h2 className="section-title">{takeawaysHeading}</h2>
+          <ul className="rule-list takeaway-list">
+            {takeaways.map((item) => (
+              <li key={item.before}>
+                {item.before}
+                {item.quote ? <em>“{item.quote}”</em> : null}
+                {item.after}
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
-      <section id="formats" className="wrap pad-band">
-        <h2 className="eyebrow eyebrow-lg">Formats</h2>
-        <dl className="format-rows">
-          {formats.map((format) => (
-            <div key={format.label}>
-              <dt>{format.label}</dt>
-              <dd>{format.length}</dd>
-            </div>
-          ))}
-        </dl>
-        <p className="other-speakers">{otherSpeakers}</p>
+      <section id="formats" className="band band-rule">
+        <div className="inner-900 stack-16">
+          <p className="eyebrow">{formatsEyebrow}</p>
+          <h2 className="section-title">{formatsHeading}</h2>
+          <div className="format-rows">
+            {formats.map((format) => (
+              <div key={format.label}>
+                <span className="format-label">{format.label}</span>
+                <span className="format-length">{format.length}</span>
+              </div>
+            ))}
+          </div>
+          <div className="other-speakers">
+            <p className="eyebrow">{otherSpeakersEyebrow}</p>
+            <p>{otherSpeakers}</p>
+          </div>
+        </div>
       </section>
 
-      <section id="about" className="wrap pad-band">
-        <h2 className="eyebrow eyebrow-lg">About the speaker</h2>
-        <SpeakerAbout />
+      <section id="about" className="band band-rule">
+        <SpeakerAbout showMore showPortrait hidePortraitOnPhone />
       </section>
 
-      <section id="booking" className="booking-band">
-        <div className="wrap">
-          <h2 className="booking-title">{bookingBand.title}</h2>
+      <section className="booking-band">
+        <div className="inner-720 stack-14">
+          <h2 className="section-title">{bookingBand.title}</h2>
           <p className="booking-body">{bookingBand.body}</p>
-          <Link className="btn-primary" href="/booking">
-            {bookingBand.cta}
-          </Link>
+          <div>
+            <Link className="btn-primary booking-band-cta" href="/booking">
+              {bookingBand.cta}
+            </Link>
+          </div>
         </div>
       </section>
     </main>

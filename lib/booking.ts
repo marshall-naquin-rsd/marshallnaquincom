@@ -1,17 +1,18 @@
-import { audienceTypes, formatOptions } from "@/lib/copy";
+import { formatOptions, roomOptions } from "@/lib/copy";
+import { Resend } from "resend";
 
 export type BookingPayload = {
   name: string;
   email: string;
   organization: string;
-  audienceType: string;
-  preferredDates: string;
+  room: string;
   format: string;
-  location: string;
+  dates: string;
   message: string;
 };
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const BOOKING_TO = "marshall.naquin@professionalsupportconsulting.com";
 
 export function parseBookingForm(input: Record<string, FormDataEntryValue>) {
   if (String(input.company ?? "").trim()) {
@@ -22,10 +23,9 @@ export function parseBookingForm(input: Record<string, FormDataEntryValue>) {
     name: String(input.name ?? "").trim(),
     email: String(input.email ?? "").trim(),
     organization: String(input.organization ?? "").trim(),
-    audienceType: String(input.audienceType ?? "").trim(),
-    preferredDates: String(input.preferredDates ?? "").trim(),
+    room: String(input.room ?? "").trim(),
     format: String(input.format ?? "").trim(),
-    location: String(input.location ?? "").trim(),
+    dates: String(input.dates ?? "").trim(),
     message: String(input.message ?? "").trim(),
   };
 
@@ -35,14 +35,8 @@ export function parseBookingForm(input: Record<string, FormDataEntryValue>) {
   if (!payload.email || !EMAIL.test(payload.email)) {
     return { ok: false as const, error: "Please add a working email." };
   }
-  if (!payload.organization) {
-    return { ok: false as const, error: "Please add the organization or event name." };
-  }
-  if (
-    payload.audienceType &&
-    !audienceTypes.includes(payload.audienceType as (typeof audienceTypes)[number])
-  ) {
-    return { ok: false as const, error: "Please choose an audience type." };
+  if (payload.room && !roomOptions.includes(payload.room as (typeof roomOptions)[number])) {
+    return { ok: false as const, error: "Please choose who is in the room." };
   }
   if (
     payload.format &&
@@ -50,55 +44,70 @@ export function parseBookingForm(input: Record<string, FormDataEntryValue>) {
   ) {
     return { ok: false as const, error: "Please choose a format." };
   }
-  if (!payload.message) {
-    return { ok: false as const, error: "Please add a short message." };
-  }
 
   return { ok: true as const, payload };
 }
 
+function escapeHtml(value: string) {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}
+
 export async function deliverBooking(payload: BookingPayload) {
-  const formId = process.env.FORMSPREE_FORM_ID?.trim();
-  const webhook = process.env.BOOKING_WEBHOOK_URL?.trim();
+  const apiKey = process.env.RESEND_API_KEY?.trim();
+  const from =
+    process.env.BOOKING_FROM_EMAIL?.trim() ||
+    "Marshall Naquin <booking@marshallnaquin.com>";
 
-  if (formId) {
-    const response = await fetch(`https://formspree.io/f/${formId}`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        ...payload,
-        _subject: `Speaking inquiry from ${payload.name}`,
-      }),
-    });
-
-    if (!response.ok) {
-      return { ok: false as const, error: "The form did not send. Please try again." };
-    }
-
-    return { ok: true as const };
+  if (!apiKey) {
+    return {
+      ok: false as const,
+      error: "The booking inbox is not connected yet. Set RESEND_API_KEY on Vercel.",
+      unconfigured: true as const,
+    };
   }
 
-  if (webhook) {
-    const response = await fetch(webhook, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
+  const subject = payload.format
+    ? `Speaking inquiry — ${payload.name} — ${payload.format}`
+    : `Speaking inquiry — ${payload.name}`;
 
-    if (!response.ok) {
-      return { ok: false as const, error: "The form did not send. Please try again." };
-    }
+  const rows = [
+    ["Name", payload.name],
+    ["Email", payload.email],
+    ["Organization", payload.organization || "—"],
+    ["Who is in the room", payload.room || "—"],
+    ["Format", payload.format || "—"],
+    ["Dates you have in mind", payload.dates || "—"],
+    ["Anything else I should know", payload.message || "—"],
+  ];
 
-    return { ok: true as const };
+  const html = `
+    <div style="font-family: Source Sans 3, Helvetica, Arial, sans-serif; color: #221d15;">
+      <p>New speaking inquiry from marshallnaquin.com.</p>
+      ${rows
+        .map(
+          ([label, value]) =>
+            `<p><strong>${escapeHtml(label)}:</strong><br>${escapeHtml(value).replaceAll("\n", "<br>")}</p>`,
+        )
+        .join("")}
+    </div>
+  `;
+
+  const resend = new Resend(apiKey);
+  const { error } = await resend.emails.send({
+    from,
+    to: [BOOKING_TO],
+    replyTo: payload.email,
+    subject,
+    html,
+  });
+
+  if (error) {
+    return { ok: false as const, error: "The form did not send. Please try again." };
   }
 
-  return {
-    ok: false as const,
-    error:
-      "The booking inbox is not connected yet. Set FORMSPREE_FORM_ID or BOOKING_WEBHOOK_URL on Vercel.",
-    unconfigured: true as const,
-  };
+  return { ok: true as const };
 }
