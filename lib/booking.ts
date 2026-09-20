@@ -84,6 +84,12 @@ export async function deliverBooking(payload: BookingPayload) {
     ["Anything else I should know", payload.message || "—"],
   ];
 
+  const text = [
+    "New speaking inquiry from marshallnaquin.com.",
+    "",
+    ...rows.map(([label, value]) => `${label}:\n${value}`),
+  ].join("\n\n");
+
   const html = `
     <div style="font-family: Source Sans 3, Helvetica, Arial, sans-serif; color: #221d15;">
       <p>New speaking inquiry from marshallnaquin.com.</p>
@@ -102,10 +108,12 @@ export async function deliverBooking(payload: BookingPayload) {
     to: [BOOKING_TO],
     replyTo: payload.email,
     subject,
+    text,
     html,
   });
 
   if (error) {
+    console.error("[booking] resend error", error);
     return { ok: false as const, error: "The form did not send. Please try again." };
   }
 

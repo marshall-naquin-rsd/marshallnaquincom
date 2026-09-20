@@ -1,5 +1,7 @@
 import { deliverBooking, parseBookingForm } from "@/lib/booking";
 
+// Resend transport, same shape as PSC /api/contact: POST JSON, Reply-To =
+// submitter, fail closed if RESEND_API_KEY is missing.
 export async function POST(request: Request) {
   let body: Record<string, FormDataEntryValue>;
 
