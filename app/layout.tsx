@@ -7,6 +7,8 @@ const sourceSerif = Source_Serif_4({
   variable: "--font-source-serif",
   display: "swap",
   style: ["normal", "italic"],
+  // Static files avoid Chromium/FreeType CFF2 variable-font spaces collapsing to zero width.
+  weight: ["400", "600"],
 });
 
 const sourceSans = Source_Sans_3({
@@ -14,6 +16,7 @@ const sourceSans = Source_Sans_3({
   variable: "--font-source-sans",
   display: "swap",
   style: ["normal", "italic"],
+  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
