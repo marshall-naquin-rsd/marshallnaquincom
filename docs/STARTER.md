@@ -33,11 +33,11 @@
 
 **Application**: Marshall Naquin  
 **Domain**: [marshallnaquin.com](https://marshallnaquin.com)  
-**Purpose**: Personal website — a simple place on the web under my own domain. Exact features TBD.  
-**Architecture**: Next.js 16 with App Router + TypeScript (static/simple pages, no backend)
+**Purpose**: Speaker home — book Marshall for talks on addiction and recovery. Staging/WIP routes stay reachable by URL but unlinked from public chrome.  
+**Architecture**: Next.js 16 with App Router + TypeScript (static pages + `/api/booking` form post)
 
-**Last Updated**: June 21, 2026  
-**Version**: v1.0 - Initial Setup  
+**Last Updated**: September 20, 2026  
+**Version**: v1.1 - Speaker home  
 **Status**: 🚧 In Development
 
 **Auth**: None  
@@ -49,9 +49,9 @@
 ## SCOPE & PLANNED FEATURES
 
 **In scope (keep it simple):**
-- Personal home page at marshallnaquin.com
-- Static pages as needed (about, contact, etc.)
-- **File downloads** — host files in `public/downloads/` for others to grab
+- Speaker home at marshallnaquin.com (`/`, `/booking`, `/about`)
+- Static pages as needed
+- **File downloads** — host files in `public/downloads/` for others to grab (unlisted)
 - **Maybe a blog** — undecided; could be markdown/MDX pages later if wanted
 
 **Out of scope (unless requirements change):**
@@ -76,7 +76,7 @@
 - **Authentication**: None
 - **Database**: None initially
 - **Testing**: Playwright
-- **Email**: Not configured yet
+- **Email**: Booking form posts to `/api/booking` and sends via Resend (`RESEND_API_KEY`, `BOOKING_FROM_EMAIL`)
 - **Package Manager**: npm
 
 ### Key Dependencies
@@ -122,6 +122,8 @@ marshallnaquincom/
 
 ```env
 NEXT_PUBLIC_SITE_URL=https://marshallnaquin.com
+RESEND_API_KEY=
+BOOKING_FROM_EMAIL=Marshall Naquin <booking@marshallnaquin.com>
 ```
 
 ### Commands
@@ -206,7 +208,7 @@ const supabase = createClient();
 
 - **Framework**: Tailwind CSS 4.0 (CSS-based configuration with @theme)
 - **Config**: `app/globals.css` (not tailwind.config.js)
-- **Fonts**: [YOUR_HEADING_FONT], [YOUR_BODY_FONT] (configure in globals.css)
+- **Fonts**: Source Serif 4 (headings), Source Sans 3 (UI/body)
 - **Colors** (Define in globals.css with @theme using design system variables):
   - Background: `--background` → `bg-background` (page backgrounds)
   - Foreground: `--foreground` → `text-foreground` (primary text)
@@ -375,6 +377,14 @@ const supabase = createClient();
 
 - The PEP Guide now lives in its own repo: https://github.com/marshall-naquin-rsd/pepguide
 - Removed the `/PEPGuide` section, home-page link, and guide-specific CSS/fonts from this site
+
+### ✅ Speaker home (Sep 20, 2026)
+
+- Public speaker site at `/` with must-keep section order (masthead through colophon)
+- Visual SoT: Marshall-approved Claude Design frames (layout, type, color, microcopy)
+- MN.com-native `/booking` inquiry via Resend to marshall.naquin@professionalsupportconsulting.com
+- `/about` speaker bio; speaking samples in `public/audio/`
+- Staging/WIP (`/downloads`, `/area7`, `/GBC`, `/higgsfield-samples`) stay reachable, unlinked, noindex
 
 ### 🚧 Phase 2 In Progress
 

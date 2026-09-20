@@ -27,6 +27,10 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Greenbriar Grove",
   description: "Homepage samples for Greenbriar Grove.",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function GbcLayout({
