@@ -8,7 +8,7 @@ test.describe("Booking page @smoke", () => {
       page.getByRole("heading", { name: "Book a talk" }),
     ).toBeVisible();
 
-    await expect(page.getByLabel("Name")).toBeVisible();
+    await expect(page.getByLabel("Name", { exact: true })).toBeVisible();
     await expect(page.getByLabel("Email")).toBeVisible();
     await expect(page.getByLabel("Organization or event name")).toBeVisible();
     await expect(page.getByLabel("Audience type")).toBeVisible();
