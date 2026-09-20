@@ -21,6 +21,15 @@ test.describe("Booking page @smoke", () => {
     await expect(page.getByRole("button", { name: "Send it" })).toBeVisible();
   });
 
+  test("fails gracefully when Resend is not configured", async ({ page }) => {
+    await page.goto("/booking");
+    await page.getByLabel("Your name").fill("Ada Test");
+    await page.getByLabel("Email").fill("ada@example.com");
+    await page.getByRole("button", { name: "Send it" }).click();
+    await expect(page.locator(".form-error")).toContainText("RESEND_API_KEY");
+    await expect(page.getByRole("heading", { name: "Message sent." })).toHaveCount(0);
+  });
+
   test("phone chrome is name plus Back", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/booking");
