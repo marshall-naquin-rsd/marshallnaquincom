@@ -7,7 +7,6 @@ import {
   formatOptions,
   hero,
   roomOptions,
-  samplesIntro,
 } from "@/lib/copy";
 
 type Status =
@@ -61,7 +60,7 @@ export function BookingForm() {
         <h1 className="page-title">{bookingPage.sentTitle}</h1>
         <div className="raised-card wait-card">
           <h2 className="wait-title">{bookingPage.whileYouWait}</h2>
-          <p className="card-body">{samplesIntro}</p>
+          <p className="card-body">{bookingPage.whileYouWaitBody}</p>
           <Link className="cta-listen" href="/#samples">
             {hero.secondaryCta}
           </Link>

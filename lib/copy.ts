@@ -138,6 +138,7 @@ export const bookingPage = {
   sending: "Sending…",
   sentTitle: "Message sent.",
   whileYouWait: "While you wait",
+  whileYouWaitBody: "I’ll reply by email.",
   name: "Your name",
   email: "Email",
   organization: "Organization",
