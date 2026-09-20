@@ -7,8 +7,8 @@ export const metadata: Metadata = {
   description:
     "Completed Seedance 2.5 generations charged as successful but required place/URL text is garbled. Published for Higgsfield support review.",
   robots: {
-    index: true,
-    follow: true,
+    index: false,
+    follow: false,
   },
 };
 

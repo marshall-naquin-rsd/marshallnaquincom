@@ -2,7 +2,7 @@
 
 Personal website for [Marshall Naquin](https://marshallnaquin.com).
 
-Simple Next.js site — no database, no auth, no SEO stack. A place on the web under my own domain. Features are still TBD; likely candidates include file downloads and maybe a blog.
+Speaker site for booking talks on addiction and recovery. Staging/WIP routes stay reachable by URL but are unlinked from the public masthead and footer.
 
 ## Stack
 
