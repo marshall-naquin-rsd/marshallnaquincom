@@ -31,14 +31,6 @@ export default function Home() {
           <p className="eyebrow">{hero.eyebrow}</p>
           <h1 className="h1-hero">{hero.h1}</h1>
           <p className="lead">{hero.lead}</p>
-          <div className="hero-actions">
-            <Link className="btn-primary" href="/booking">
-              {hero.primaryCta}
-            </Link>
-            <a className="cta-listen" href="#samples">
-              {hero.secondaryCta}
-            </a>
-          </div>
         </div>
         <Image
           className="portrait hero-portrait"
@@ -49,6 +41,14 @@ export default function Home() {
           sizes="(max-width: 720px) 100vw, 240px"
           priority
         />
+        <div className="hero-actions">
+          <Link className="btn-primary" href="/booking">
+            {hero.primaryCta}
+          </Link>
+          <a className="cta-listen" href="#samples">
+            {hero.secondaryCta}
+          </a>
+        </div>
       </section>
 
       <section id="talk" className="night-band">

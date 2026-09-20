@@ -285,12 +285,17 @@ a:hover {
 .hero {
   display: grid;
   grid-template-columns: 1fr 260px;
-  gap: 48px;
+  grid-template-areas:
+    "copy portrait"
+    "actions portrait";
+  column-gap: 48px;
+  row-gap: 16px;
   align-items: start;
   padding: 96px var(--edge) 80px;
 }
 
 .hero-copy {
+  grid-area: copy;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -300,7 +305,12 @@ a:hover {
   margin-top: 8px;
 }
 
+.hero-portrait {
+  grid-area: portrait;
+}
+
 .hero-actions {
+  grid-area: actions;
   display: flex;
   align-items: center;
   gap: 26px;
@@ -763,6 +773,12 @@ a:hover {
     flex-direction: column;
     gap: 14px;
     padding: 32px var(--phone-edge);
+  }
+
+  .hero-copy,
+  .hero-portrait,
+  .hero-actions {
+    grid-area: unset;
   }
 
   .hero-copy {
