@@ -19,6 +19,7 @@ test.describe("Home page @smoke", () => {
     await expect(nav.getByRole("link", { name: "Formats" })).toBeVisible();
     await expect(nav.getByRole("link", { name: "About" })).toBeVisible();
     await expect(nav.getByRole("link", { name: "Book a talk" })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Listen to a sample" }).first()).toBeVisible();
 
     await expect(page.getByRole("heading", { name: "Two short samples" })).toBeVisible();
     await expect(page.getByRole("heading", { name: "How long a room has me" })).toBeVisible();

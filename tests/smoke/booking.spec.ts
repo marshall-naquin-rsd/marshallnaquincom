@@ -19,6 +19,8 @@ test.describe("Booking page @smoke", () => {
     await expect(page.getByLabel("Dates you have in mind")).toBeVisible();
     await expect(page.getByLabel("Anything else I should know")).toBeVisible();
     await expect(page.getByRole("button", { name: "Send it" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Message sent." })).toHaveCount(0);
+    await expect(page.getByRole("heading", { name: "While you wait" })).toHaveCount(0);
   });
 
   test("fails gracefully when Resend is not configured", async ({ page }) => {
