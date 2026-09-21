@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Vendored Area 7 design-system kit (not app TypeScript)
+    "public/area7-ds/**",
+    // Unused template; pre-existing unescaped-entity errors
+    "docs/design_page_template.tsx",
   ]),
 ]);
 

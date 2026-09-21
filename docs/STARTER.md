@@ -351,10 +351,18 @@ const supabase = createClient();
 
 ### ✅ Area 7 Mini-Conference Preview (Sep 13, 2026)
 
-- Unlisted `/area7` preview of the 2027 Area 7 Mini-Conference page (noindexed)
+- Unlisted `/2027miniconf` preview of the 2027 Area 7 Mini-Conference page (noindexed)
 - Volunteer form is client-side only for review; it does not persist signups
-- Home page link added beside Downloads
+- Originally published at `/area7`; moved so `/area7` can host the Area 7 design-system proposal
+- No redirect from `/area7` to `/2027miniconf`
 - See `docs/archive/TASK_area7_conference_preview.md` for details
+
+### ✅ Area 7 design-system proposal (Sep 21, 2026)
+
+- Static proposal kit at `/area7`, `/area7/meetings`, and `/area7/map`
+- Assets served from `/area7-ds/` (styles, photos, fonts, tokens)
+- Banner on all three pages: proposal / not official / sample meeting data
+- Not linked from the speaker home nav or footer
 
 ### ✅ Phase 1 Complete (June 21, 2026)
 
@@ -384,7 +392,7 @@ const supabase = createClient();
 - Visual SoT: Marshall-approved Claude Design frames (layout, type, color, microcopy)
 - MN.com-native `/booking` inquiry via Resend to marshall.naquin@professionalsupportconsulting.com
 - `/about` speaker bio; speaking samples in `public/audio/`
-- Staging/WIP (`/downloads`, `/area7`, `/GBC`, `/higgsfield-samples`) stay reachable, unlinked, noindex
+- Staging/WIP (`/downloads`, `/2027miniconf`, `/GBC`, `/higgsfield-samples`) stay reachable, unlinked, noindex
 
 ### 🚧 Phase 2 In Progress
 

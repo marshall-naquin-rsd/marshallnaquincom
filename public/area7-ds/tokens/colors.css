@@ -1,0 +1,89 @@
+/* Area 7 color system.
+   Heron gray-blue carries structure; sage is the single accent;
+   brass is reserved for clean-time milestones only.
+   Back-compat aliases keep parent-site utility names resolving. */
+
+:root {
+  --background: #ffffff;
+  --foreground: #2b2b2b;
+
+  /* Heron gray-blue — structure */
+  --heron-deep:  #2F4250;  /* header, footer, headings, secondary button */
+  --heron:       #4F6B7C;  /* body links, focus ring — 5.4:1 on white */
+  --heron-light: #A3B8C4;  /* primary button fill; pair with #1B1B1B */
+  --heron-pale:  #E3EAEE;  /* table headers, info boxes, selected rows */
+
+  /* Sage — the single accent */
+  --sage:        #7E8F6F;  /* hairlines, map pins, borders — never under white text */
+  --sage-deep:   #4B5842;  /* every sage that carries text or sits under white — 7.6:1 */
+  --sage-pale:   #F3F5EF;  /* sage-tinted panels */
+  --sage-line:   #C3CDB8;  /* sage hairline / on-dark accent text */
+
+  /* Brass — clean-time milestones ONLY */
+  --brass:       #8A6D3B;
+  --brass-pale:  #F5EFDF;
+
+  /* Ink & ground */
+  --ink:        #2b2b2b;
+  --ink-soft:   #5E6B72;
+  --ink-muted:  #8B979D;
+  --ink-pending: #6E7F8A;  /* "not yet established" values at headline scale — 3.6:1 on #F7FAFB */
+  --paper:      #FAFAF8;
+  --gray-bg:    #F5F6F5;
+  --gray-light: #f5f5f5;
+  --hairline:   #DFE4E2;
+  --field-line: #CBD3D7;
+
+  /* Feedback */
+  --danger:      #9B4A3F;
+  --danger-pale: #F7E9E7;
+  --success:     #7E8F6F;
+  --success-pale:#EDF3ED;
+
+  /* Back-compat aliases — existing components read these */
+  --primary-blue:   var(--heron-light);
+  --secondary-blue: var(--heron-deep);
+  --accent-gold:    var(--brass);
+  --text-dark:      var(--ink);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-heron-deep:  var(--heron-deep);
+  --color-heron:       var(--heron);
+  --color-heron-light: var(--heron-light);
+  --color-heron-pale:  var(--heron-pale);
+
+  --color-sage:      var(--sage);
+  --color-sage-deep: var(--sage-deep);
+  --color-sage-pale: var(--sage-pale);
+  --color-sage-line: var(--sage-line);
+
+  --color-brass:      var(--brass);
+  --color-brass-pale: var(--brass-pale);
+
+  --color-ink:       var(--ink);
+  --color-ink-soft:  var(--ink-soft);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-pending: var(--ink-pending);
+  --color-paper:     var(--paper);
+  --color-hairline:  var(--hairline);
+
+  --color-danger:       var(--danger);
+  --color-danger-pale:  var(--danger-pale);
+  --color-success:      var(--success);
+  --color-success-pale: var(--success-pale);
+
+  /* aliases */
+  --color-primary-blue:   var(--primary-blue);
+  --color-secondary-blue: var(--secondary-blue);
+  --color-accent-gold:    var(--accent-gold);
+  --color-text-dark:      var(--text-dark);
+  --color-gray-bg:        var(--gray-bg);
+  --color-gray-light:     var(--gray-light);
+
+  --font-sans:    'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-heading: 'League Spartan', 'Helvetica Neue', sans-serif;
+}

@@ -1,0 +1,243 @@
+/* Ready-made component classes. Prefer the React components in
+   components/ over re-deriving any of this. */
+
+/* ---------- Buttons ---------- */
+
+.btn-primary,
+.btn-secondary,
+.btn-sage,
+.btn-outline,
+.btn-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 32px;
+  min-height: 44px;
+  border: 0;
+  border-radius: 6px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color .2s, color .2s;
+}
+
+.btn-primary   { background: var(--heron-light); color: #1B1B1B; }
+.btn-primary:hover   { background: #8FA9B8; }
+.btn-secondary { background: var(--heron-deep); color: #fff; }
+.btn-secondary:hover { background: #243442; }
+.btn-sage      { background: var(--sage-deep); color: #fff; } /* deep, not --sage: #7E8F6F under white is 3.5:1 */
+.btn-sage:hover      { background: #3D4836; }
+.btn-danger    { background: var(--danger); color: #fff; }
+.btn-danger:hover    { background: #843E34; }
+
+.btn-outline {
+  background: transparent;
+  color: var(--heron-deep);
+  border: 2px solid var(--heron-light);
+  padding: 14px 30px;
+}
+.btn-outline:hover { background: var(--heron-light); color: #1B1B1B; }
+
+/* Outline on the heron-deep band. Fills with sage-deep (7.6:1 under white)
+   rather than heron-light, so the white label stays legible on hover.
+   Use this instead of overriding .btn-outline's color inline. */
+.btn-outline-dark {
+  color: #fff;
+  border-color: var(--sage);
+}
+.btn-outline-dark:hover {
+  background: var(--sage-deep);
+  border-color: var(--sage-deep);
+  color: #fff;
+}
+
+.btn-primary:disabled,
+.btn-secondary:disabled,
+.btn-sage:disabled,
+.btn-outline:disabled,
+.btn-danger:disabled { opacity: .5; cursor: not-allowed; }
+
+/* Hero actions keep the parent's 235px minimum. */
+.btn-hero { min-width: 235px; }
+
+/* In-card small button. 44px min-height preserved for touch. */
+.btn-small {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 24px;
+  min-height: 44px;
+  border: 0;
+  border-radius: 4px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  background: var(--heron-light);
+  color: #1B1B1B;
+  cursor: pointer;
+}
+.btn-small:hover { background: #8FA9B8; }
+
+/* ---------- Forms ---------- */
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--field-line);
+  border-radius: 6px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--ink);
+  background-color: #fff;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.form-textarea { resize: vertical; min-height: 120px; }
+.form-select { cursor: pointer; }
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  outline: none;
+  border-color: var(--heron);
+  box-shadow: 0 0 0 3px rgba(79, 107, 124, .18);
+}
+
+.form-input:disabled,
+.form-textarea:disabled,
+.form-select:disabled {
+  background-color: #F3F4F3;
+  cursor: not-allowed;
+  opacity: .6;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder { color: var(--ink-muted); }
+
+.form-label {
+  display: block;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  color: #3D4A50;
+  margin-bottom: 8px;
+}
+
+.form-check-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  color: #3D4A50;
+  cursor: pointer;
+}
+
+.form-error {
+  display: block;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--danger);
+  margin-top: 6px;
+}
+
+.form-error-box,
+.form-success {
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 16px;
+}
+
+.form-error-box { background: var(--danger-pale); border: 1px solid var(--danger); color: #7A362D; }
+.form-success   { background: var(--success-pale); border: 1px solid var(--success); color: #3F4A38; }
+
+/* ---------- Cards & listings ---------- */
+/* Area 7 cards carry a hairline the parent's do not, so meeting and
+   document listings read as records rather than marketing. */
+
+.card {
+  background: #fff;
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+  padding: 24px;
+  box-shadow: 0 1px 2px rgba(29, 42, 51, .06);
+}
+
+.card-raised { box-shadow: 0 8px 20px -8px rgba(29, 42, 51, .22); }
+
+.card-milestone { border-top: 4px solid var(--brass); }
+.card-sage { background: var(--sage-pale); border-color: var(--sage-line); }
+
+.meeting-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+/* ---------- Badges ---------- */
+
+.badge-success, .badge-warning, .badge-danger, .badge-info,
+.badge-officer, .badge-gsr, .badge-milestone {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.badge-success { background: var(--success-pale); color: #3F4A38; border: 1px solid #A9BC9B; }
+.badge-warning { background: var(--brass-pale);   color: #6E5733; border: 1px solid #CDB88A; }
+.badge-danger  { background: var(--danger-pale);  color: #7A362D; border: 1px solid #D3A29A; }
+.badge-info    { background: var(--heron-pale);   color: var(--heron-deep); border: 1px solid var(--heron-light); }
+.badge-officer { background: var(--heron-deep);   color: #fff; }
+.badge-gsr     { background: var(--sage-deep);    color: #fff; }
+.badge-milestone {
+  background: #fff;
+  color: #6E5733;
+  border: 1px solid var(--brass);
+  border-radius: 999px;
+}
+
+/* ---------- Map vocabulary (Area 7 only) ---------- */
+
+.map-land      { fill: #D9E1D2; stroke: #8C9E7E; stroke-width: 1.2; cursor: pointer; transition: fill .15s; }
+.map-land:hover { fill: #C6D1BB; }
+.map-land-sel  { fill: #B7C5A8; }
+.map-outside   { fill: #F4F4F1; stroke: #D6D6D0; stroke-width: .7; stroke-dasharray: 3 3; }
+.map-water     { fill: var(--heron-pale); }
+.map-pin       { fill: var(--sage-deep); stroke: #fff; stroke-width: 2; }
+.map-pin-office { fill: var(--brass); stroke: #fff; stroke-width: 2; }
+.map-pin-wanted { fill: #fff; stroke: var(--sage); stroke-width: 2; stroke-dasharray: 3 2.5; }
+
+.state-chip {
+  padding: 10px 18px;
+  min-height: 44px;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--heron-deep);
+  border: 1px solid var(--heron-light);
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color .15s;
+}
+.state-chip:hover { background: var(--heron-pale); }
+.state-chip[aria-pressed="true"] {
+  background: var(--heron-deep);
+  color: #fff;
+  border-color: var(--heron-deep);
+}

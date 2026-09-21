@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Area 7 meeting map</title>
+<script src="https://unpkg.com/d3@7.9.0/dist/d3.min.js" integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/topojson-client@3.1.0/dist/topojson-client.min.js" integrity="sha384-Ukv1p/xTma6P4/2bY5KzWBw+ydSpXmhCMtyciIQVDJ1RmOxtCYNMF1uXT9T63H67" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/area7-ds/tokens/fonts.css">
+<style>
+  :root {
+    --heron-deep:#2F4250; --heron:#4F6B7C; --heron-light:#A3B8C4; --heron-pale:#E3EAEE;
+    --sage:#7E8F6F; --sage-deep:#4B5842; --sage-pale:#F3F5EF; --brass:#8A6D3B;
+    --ink:#2B2B2B; --ink-soft:#5E6B72; --paper:#FAFAF8; --hair:#DFE4E2;
+  }
+  * { box-sizing:border-box; }
+  html, body { margin:0; height:100%; }
+  body {
+    background:var(--paper); color:var(--ink);
+    font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  #wrap { display:flex; gap:24px; align-items:stretch; padding:24px; min-height:100%; }
+  #mapcol { flex:1 1 560px; min-width:0; display:flex; flex-direction:column; gap:16px; }
+  #chips { display:flex; flex-wrap:wrap; gap:10px; }
+  .chip {
+    padding:10px 18px; border-radius:999px; background:#fff; color:var(--heron-deep);
+    border:1px solid var(--heron-light); font-size:15px; font-weight:600;
+    cursor:pointer; min-height:44px; font-family:inherit; transition:background-color .15s;
+  }
+  .chip:hover { background:var(--heron-pale); }
+  .chip[aria-pressed="true"] { background:var(--heron-deep); color:#fff; border-color:var(--heron-deep); }
+  #mapbox {
+    flex:1; min-height:360px; background:var(--heron-pale);
+    border:1px solid var(--hair); border-radius:10px; overflow:hidden; position:relative;
+  }
+  #mapbox svg { display:block; width:100%; height:100%; }
+  .state-out { fill:#F4F4F1; stroke:#D6D6D0; stroke-width:.7; stroke-dasharray:3 3; }
+  .state-in { fill:#D9E1D2; stroke:#8C9E7E; stroke-width:1.2; cursor:pointer; transition:fill .15s; }
+  .state-in:hover { fill:#C6D1BB; }
+  .state-in.sel { fill:#B7C5A8; }
+  .state-partial { fill:#F4F4F1; stroke:#D6D6D0; stroke-width:.7; }
+  .state-label { font-family:'League Spartan', Arial, sans-serif; font-size:13px; font-weight:700; fill:var(--sage-deep); letter-spacing:1.5px; text-transform:uppercase; pointer-events:none; }
+  .state-label-out { font-family:'League Spartan', Arial, sans-serif; font-size:11px; font-weight:700; fill:#B6B6AF; letter-spacing:1.5px; text-transform:uppercase; pointer-events:none; }
+  .pin { cursor:pointer; }
+  .pin circle.dot { fill:var(--sage-deep); stroke:#fff; stroke-width:2; }
+  .pin.office circle.dot { fill:var(--brass); }
+  .pin.wanted circle.dot { fill:#fff; stroke:var(--sage); stroke-width:2; stroke-dasharray:3 2.5; }
+  .pin circle.hit { fill:transparent; }
+  .pin.dim { opacity:.22; }
+  .cluster text { font-size:12px; font-weight:700; fill:#fff; font-family:inherit; pointer-events:none; }
+  #legend { display:flex; flex-wrap:wrap; gap:18px; font-size:14px; color:var(--ink-soft); }
+  #legend span { display:inline-flex; align-items:center; gap:8px; }
+  .swatch { width:14px; height:14px; border-radius:999px; flex:none; }
+  #panel { flex:0 0 340px; min-width:0; display:flex; flex-direction:column; gap:16px; }
+  #panel h2 {
+    font-family:'League Spartan', Arial, sans-serif; font-size:28px; line-height:34px;
+    font-weight:700; color:var(--heron-deep); margin:0;
+  }
+  #panel .sub { font-size:15px; line-height:24px; color:var(--ink-soft); margin:0; }
+  #list { display:flex; flex-direction:column; gap:10px; overflow-y:auto; max-height:52vh; }
+  .row {
+    background:#fff; border:1px solid var(--hair); border-radius:8px; padding:14px 16px;
+    display:flex; flex-direction:column; gap:4px;
+  }
+  .row.active { border-color:var(--sage); box-shadow:0 0 0 2px rgba(126,143,111,.2); }
+  .row .g { font-size:16px; font-weight:600; color:var(--ink); }
+  .row .m { font-size:14px; color:var(--ink-soft); }
+  .row .t { font-size:14px; color:var(--sage-deep); font-weight:600; }
+  .start {
+    background:var(--sage-pale); border:1px solid #C3CDB8; border-radius:10px; padding:20px;
+  }
+  .start .eyebrow { font-size:13px; letter-spacing:2px; text-transform:uppercase; font-weight:700; color:var(--sage-deep); }
+  .start h3 { font-family:'League Spartan', Arial, sans-serif; font-size:24px; line-height:30px; font-weight:700; color:var(--heron-deep); margin:10px 0 8px; }
+  .start p { font-size:15px; line-height:24px; color:#4A5A46; margin:0 0 16px; }
+  .start button {
+    padding:12px 22px; background:var(--sage-deep); color:#fff; border:0; border-radius:6px;
+    font-family:inherit; font-size:15px; font-weight:600; cursor:pointer; min-height:44px;
+  }
+  .start button:hover { background:#6C7C5E; }
+  #loading { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:15px; color:var(--ink-soft); }
+  @media (max-width: 880px) {
+    #wrap { flex-direction:column; }
+    #panel { flex:none; }
+    #list { max-height:none; }
+  }
+</style>
+</head>
+<body>
+<div role="status" style="position:sticky;top:0;z-index:9999;background:#3d2a12;color:#f6e7c2;text-align:center;padding:10px 16px;font:600 14px/1.45 'Helvetica Neue',Helvetica,Arial,sans-serif;border-bottom:2px solid #d4af37">Proposal. Not the official Area 7 site. Meeting data is sample only.</div>
+
+<div id="wrap">
+  <div id="mapcol">
+    <div id="chips"></div>
+    <div id="mapbox"><div id="loading">Loading map&hellip;</div></div>
+    <div id="legend">
+      <span><i class="swatch" style="background:#4B5842"></i> Meeting location</span>
+      <span><i class="swatch" style="background:#8A6D3B"></i> Intergroup</span>
+      <span><i class="swatch" style="background:#fff; border:2px dashed #7E8F6F; box-sizing:border-box"></i> Interest, no meeting yet</span>
+    </div>
+  </div>
+  <div id="panel">
+    <h2 id="panel-title">All of Area 7</h2>
+    <p class="sub" id="panel-sub">Placeholder listings &mdash; swap in the Area 7 meeting list.</p>
+    <div id="list"></div>
+    <div class="start">
+      <div class="eyebrow">No meeting near you?</div>
+      <h3>Start one</h3>
+      <p>Two compulsive gamblers and a room. Area 7 supplies literature, a listing on this map, and a contact from the nearest group.</p>
+      <button type="button">HOW TO START A MEETING</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const AREA = ['Louisiana', 'Mississippi'];
+const PARTIAL = 'Alabama';
+const CONTEXT = ['Texas', 'Arkansas', 'Tennessee', 'Georgia', 'Florida'];
+const AL_CUT = 32.0; // southern Alabama boundary, latitude — adjust to the real county line
+
+const MEETINGS = [
+  { g:'Tuesday Night Recovery', city:'Baton Rouge', st:'LA', when:'Tue 7:00 PM', lat:30.45, lon:-91.19, kind:'office' },
+  { g:'Crescent City Group',    city:'New Orleans', st:'LA', when:'Mon 6:30 PM', lat:29.95, lon:-90.07 },
+  { g:'Red River Group',        city:'Shreveport',  st:'LA', when:'Wed 7:00 PM', lat:32.53, lon:-93.75, kind:'office' },
+  { g:'Acadiana Recovery',      city:'Lafayette',   st:'LA', when:'Thu 6:00 PM', lat:30.22, lon:-92.02 },
+  { g:'Lake Area Group',        city:'Lake Charles',st:'LA', when:'Fri 7:00 PM', lat:30.23, lon:-93.22 },
+  { g:'Twin Cities Group',      city:'Monroe',      st:'LA', when:'Tue 6:00 PM', lat:32.51, lon:-92.12 },
+  { g:'Cenla Group',            city:'Alexandria',  st:'LA', when:'Sat 10:00 AM',lat:31.31, lon:-92.44 },
+  { g:'Northshore Group',       city:'Hammond',     st:'LA', when:'Thu 7:00 PM', lat:30.50, lon:-90.46 },
+  { g:'Bayou Group',            city:'Houma',       st:'LA', when:'Sun 5:00 PM', lat:29.60, lon:-90.72 },
+  { g:'Slidell Group',          city:'Slidell',     st:'LA', when:'Wed 6:30 PM', lat:30.28, lon:-89.78 },
+  { g:'Capital Group',          city:'Jackson',     st:'MS', when:'Mon 7:00 PM', lat:32.30, lon:-90.18 },
+  { g:'Coast Group',            city:'Gulfport',    st:'MS', when:'Tue 6:30 PM', lat:30.37, lon:-89.09 },
+  { g:'Hub City Group',         city:'Hattiesburg', st:'MS', when:'Thu 6:30 PM', lat:31.33, lon:-89.29 },
+  { g:'Biloxi Bay Group',       city:'Biloxi',      st:'MS', when:'Sat 9:00 AM', lat:30.40, lon:-88.89 },
+  { g:'Queen City Group',       city:'Meridian',    st:'MS', when:'Fri 6:00 PM', lat:32.36, lon:-88.70 },
+  { g:'Natchez',                city:'Natchez',     st:'MS', when:'Interest registered', lat:31.56, lon:-91.40, kind:'wanted' },
+  { g:'Port City Group',        city:'Mobile',      st:'AL', when:'Sun 5:00 PM', lat:30.69, lon:-88.04 },
+  { g:'Eastern Shore Group',    city:'Daphne',      st:'AL', when:'Wed 6:30 PM', lat:30.60, lon:-87.90 },
+  { g:'Wiregrass Group',        city:'Dothan',      st:'AL', when:'Tue 7:00 PM', lat:31.22, lon:-85.39 },
+  { g:'Enterprise',             city:'Enterprise',  st:'AL', when:'Interest registered', lat:31.32, lon:-85.86, kind:'wanted' }
+];
+
+const STATE_NAME = { LA:'Louisiana', MS:'Mississippi', AL:'Alabama (southern)' };
+let selected = null;
+let activeIdx = null;
+
+function counts() {
+  const c = { LA:0, MS:0, AL:0 };
+  MEETINGS.forEach(m => { if (m.kind !== 'wanted') c[m.st]++; });
+  return c;
+}
+
+function renderChips() {
+  const c = counts();
+  const box = document.getElementById('chips');
+  box.innerHTML = '';
+  [['all','All of Area 7', MEETINGS.filter(m=>m.kind!=='wanted').length],
+   ['LA','Louisiana', c.LA], ['MS','Mississippi', c.MS], ['AL','S. Alabama', c.AL]]
+  .forEach(([key,label,n]) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'chip';
+    b.textContent = label + ' \u00b7 ' + n;
+    b.setAttribute('aria-pressed', String(key === 'all' ? selected === null : selected === key));
+    b.onclick = () => { selected = key === 'all' ? null : key; activeIdx = null; renderAll(); };
+    box.appendChild(b);
+  });
+}
+
+function renderList() {
+  document.getElementById('panel-title').textContent = selected ? STATE_NAME[selected] : 'All of Area 7';
+  const list = document.getElementById('list');
+  list.innerHTML = '';
+  MEETINGS.forEach((m, i) => {
+    if (selected && m.st !== selected) return;
+    const row = document.createElement('div');
+    row.className = 'row' + (activeIdx === i ? ' active' : '');
+    row.innerHTML =
+      '<div class="g"></div><div class="m"></div><div class="t"></div>';
+    row.querySelector('.g').textContent = m.kind === 'wanted' ? m.city + ' \u2014 meeting wanted' : m.g;
+    row.querySelector('.m').textContent = m.city + ', ' + m.st;
+    row.querySelector('.t').textContent = m.when;
+    row.onclick = () => { activeIdx = i; renderList(); renderPins(); };
+    list.appendChild(row);
+  });
+}
+
+let projection, pinLayer;
+
+function renderPins() {
+  if (!pinLayer) return;
+  pinLayer.selectAll('g.pin').each(function(d, i) {
+    const dim = (selected && d.st !== selected);
+    d3.select(this).classed('dim', dim);
+    d3.select(this).select('circle.dot').attr('r', activeIdx === i ? 8.5 : 6);
+  });
+}
+
+function renderAll() { renderChips(); renderList(); renderPins(); }
+
+d3.json('https://cdn.jsdelivr.net/npm/us-atlas@3.0.1/states-10m.json').then(topo => {
+  const all = topojson.feature(topo, topo.objects.states).features;
+  const byName = n => all.find(f => f.properties.name === n);
+  const inArea = AREA.map(byName).filter(Boolean);
+  const al = byName(PARTIAL);
+  const ctx = CONTEXT.map(byName).filter(Boolean);
+
+  const box = document.getElementById('mapbox');
+  const w = box.clientWidth || 700;
+  const h = box.clientHeight || 460;
+  document.getElementById('loading').remove();
+
+  const focus = { type:'FeatureCollection', features: inArea.concat(al ? [al] : []) };
+  projection = d3.geoMercator().fitExtent([[24, 24], [w - 24, h - 24]], focus);
+  const path = d3.geoPath(projection);
+
+  const svg = d3.select(box).append('svg').attr('viewBox', '0 0 ' + w + ' ' + h);
+
+  // clip southern Alabama at AL_CUT
+  const cutY = projection([-87, AL_CUT])[1];
+  svg.append('defs').append('clipPath').attr('id', 'al-south')
+    .append('rect').attr('x', 0).attr('y', cutY).attr('width', w).attr('height', h - cutY);
+
+  svg.append('g').selectAll('path').data(ctx).join('path')
+    .attr('class', 'state-out').attr('d', path);
+
+  if (al) {
+    svg.append('path').datum(al).attr('class', 'state-partial').attr('d', path);
+    svg.append('path').datum(al).attr('class', 'state-in')
+      .attr('d', path).attr('clip-path', 'url(#al-south)')
+      .on('click', () => { selected = selected === 'AL' ? null : 'AL'; activeIdx = null; renderAll(); updateSel(); });
+  }
+
+  const inPaths = svg.append('g').selectAll('path').data(inArea).join('path')
+    .attr('class', 'state-in').attr('d', path)
+    .on('click', d => {
+      const code = d.target.__data__.properties.name === 'Louisiana' ? 'LA' : 'MS';
+      selected = selected === code ? null : code;
+      activeIdx = null; renderAll(); updateSel();
+    });
+
+  svg.append('g').selectAll('text').data(ctx).join('text')
+    .attr('class', 'state-label-out')
+    .attr('transform', d => 'translate(' + path.centroid(d) + ')')
+    .attr('text-anchor', 'middle')
+    .text(d => d.properties.name);
+
+  const labels = [
+    { n:'Louisiana', p:[-92.8, 31.7] },
+    { n:'Mississippi', p:[-89.9, 33.3] },
+    { n:'S. Alabama', p:[-87.2, 31.2] }
+  ];
+  svg.append('g').selectAll('text').data(labels).join('text')
+    .attr('class', 'state-label')
+    .attr('transform', d => 'translate(' + projection(d.p) + ')')
+    .attr('text-anchor', 'middle')
+    .text(d => d.n);
+
+  pinLayer = svg.append('g');
+  const pins = pinLayer.selectAll('g.pin').data(MEETINGS).join('g')
+    .attr('class', d => 'pin' + (d.kind ? ' ' + d.kind : ''))
+    .attr('transform', d => 'translate(' + projection([d.lon, d.lat]) + ')');
+  pins.append('circle').attr('class', 'dot').attr('r', 6);
+  pins.append('circle').attr('class', 'hit').attr('r', 14);
+  pins.append('title').text(d => d.kind === 'wanted'
+    ? d.city + ', ' + d.st + ' — meeting wanted'
+    : d.g + ' — ' + d.city + ', ' + d.st + ' — ' + d.when);
+  pins.on('click', (ev, d) => {
+    activeIdx = MEETINGS.indexOf(d);
+    selected = d.st; renderAll(); updateSel();
+  });
+
+  function updateSel() {
+    inPaths.classed('sel', d => selected === (d.properties.name === 'Louisiana' ? 'LA' : 'MS'));
+    svg.selectAll('path.state-in[clip-path]').classed('sel', selected === 'AL');
+  }
+
+  renderAll();
+}).catch(err => {
+  const l = document.getElementById('loading');
+  if (l) l.textContent = 'Map data could not be loaded.';
+  console.error(err);
+});
+</script>
+</body>
+</html>

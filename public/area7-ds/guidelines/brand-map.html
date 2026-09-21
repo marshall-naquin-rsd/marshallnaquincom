@@ -1,0 +1,22 @@
+<!-- @dsCard group="Brand" viewport="700x200" name="Map vocabulary" subtitle="Pin states — listed meeting, intergroup office, meeting wanted" -->
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>body{margin:0;padding:16px;background:#FAFAF8;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif}</style>
+</head><body>
+<svg viewBox="0 0 660 96" style="width:100%;height:96px">
+  <rect x="0" y="0" width="660" height="96" class="map-water" rx="6"></rect>
+  <rect x="14" y="12" width="200" height="72" class="map-land" rx="4"></rect>
+  <rect x="226" y="12" width="200" height="72" class="map-land map-land-sel" rx="4"></rect>
+  <rect x="438" y="12" width="208" height="72" class="map-outside" rx="4"></rect>
+  <circle cx="70" cy="48" r="9" class="map-pin"></circle>
+  <circle cx="150" cy="60" r="9" class="map-pin-office"></circle>
+  <circle cx="300" cy="44" r="9" class="map-pin-wanted"></circle>
+</svg>
+<div style="display:flex;gap:22px;flex-wrap:wrap;font-size:12px;color:#5E6B72;margin-top:10px">
+  <span>&#9679; sage-deep &mdash; listed meeting</span>
+  <span style="color:#8A6D3B">&#9679; brass &mdash; intergroup office</span>
+  <span>&#9675; dashed &mdash; meeting wanted, none yet</span>
+  <span>hatched &mdash; outside Area 7</span>
+</div>
+</body></html>

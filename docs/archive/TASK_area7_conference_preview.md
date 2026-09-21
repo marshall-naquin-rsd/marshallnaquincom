@@ -21,7 +21,7 @@ Source: `batonrougega-nextjs/Gamblers Anonymous Area 7 Conference/Area 7 Mini-Co
 
 ## PHASES / STEPS
 
-1. Convert the Design Composer HTML into a Next.js route at `/area7`.
+1. Convert the Design Composer HTML into a Next.js route at `/area7` (later moved to `/2027miniconf`; no redirect from `/area7`).
 2. Keep volunteer signup as client-side only (same as the source preview).
 3. Link it from the home page and add a smoke test.
 4. Deploy so the page is publicly shareable.

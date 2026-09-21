@@ -43,6 +43,7 @@ test.describe("Home page @smoke", () => {
     await expect(page.getByRole("link", { name: /Area 7/i })).toHaveCount(0);
     await expect(page.locator('a[href="/downloads"]')).toHaveCount(0);
     await expect(page.locator('a[href="/area7"]')).toHaveCount(0);
+    await expect(page.locator('a[href="/2027miniconf"]')).toHaveCount(0);
     await expect(page.locator('a[href="/GBC"]')).toHaveCount(0);
     await expect(page.locator('a[href="/higgsfield-samples"]')).toHaveCount(0);
   });
