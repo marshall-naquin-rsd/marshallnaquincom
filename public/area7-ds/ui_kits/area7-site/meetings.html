@@ -1,0 +1,164 @@
+<!-- @dsCard group="Area 7 Site" viewport="1200x820" name="Meeting finder" subtitle="State chips, filters and meeting rows across three states" -->
+<!-- @startingPoint section="Area 7 Site" subtitle="Multi-state meeting finder with filters" viewport="1200x820" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meetings — Area 7 Gamblers Anonymous</title>
+<link rel="stylesheet" href="/area7-ds/styles.css">
+<style>body{margin:0}</style>
+</head><body>
+<div role="status" style="position:sticky;top:0;z-index:9999;background:#3d2a12;color:#f6e7c2;text-align:center;padding:10px 16px;font:600 14px/1.45 'Helvetica Neue',Helvetica,Arial,sans-serif;border-bottom:2px solid #d4af37">Proposal. Not the official Area 7 site. Meeting data is sample only.</div>
+
+
+<header style="background:var(--heron-deep);color:#fff">
+  <nav aria-label="Global" style="max-width:1200px;margin:0 auto;padding:20px 28px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;box-sizing:border-box">
+    <a href="/area7" style="text-decoration:none">
+      <div style="font-family:var(--font-heading);font-size:clamp(20px,2.5vw,32px);line-height:1.08;font-weight:700;color:#F7F7F7">
+        <div style="white-space:nowrap">Area 7</div><div style="white-space:nowrap">Gamblers Anonymous</div>
+      </div>
+    </a>
+    <div style="display:flex;gap:20px;flex-wrap:wrap;justify-content:flex-end;align-items:center">
+      <a href="/area7/meetings" style="font-size:15px;color:var(--sage-line);letter-spacing:1.1px;text-transform:uppercase;text-decoration:none;white-space:nowrap">Meetings</a>
+      <a href="/area7#start" style="font-size:15px;color:#F7F7F7;letter-spacing:1.1px;text-transform:uppercase;text-decoration:none;white-space:nowrap">Start a Meeting</a>
+      <a href="/area7#business" style="font-size:15px;color:#F7F7F7;letter-spacing:1.1px;text-transform:uppercase;text-decoration:none;white-space:nowrap">Area Business</a>
+      <a href="/area7#professionals" style="font-size:15px;color:#F7F7F7;letter-spacing:1.1px;text-transform:uppercase;text-decoration:none;white-space:nowrap">Professionals</a>
+      <a href="/area7#contact" style="font-size:15px;color:#F7F7F7;letter-spacing:1.1px;text-transform:uppercase;text-decoration:none;white-space:nowrap">Contact</a>
+      <a href="#" style="font-size:15px;color:#F7F7F7;letter-spacing:1.1px;text-transform:uppercase;text-decoration:none;white-space:nowrap">Login &rarr;</a>
+    </div>
+  </nav>
+</header>
+<main style="padding:48px 0 72px">
+  <div class="content-container">
+    <div class="eyebrow" style="margin-bottom:14px">Louisiana &middot; Mississippi &middot; Southern Alabama</div>
+    <h1 style="margin:0 0 12px">Find a meeting</h1>
+    <p class="lede" style="margin:0 0 28px;max-width:720px">Anyone who wants to stop gambling is welcome. You do not have to call ahead, register, or give your name at the door.</p>
+
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px">
+      <button class="state-chip" aria-pressed="true">All of Area 7</button>
+      <button class="state-chip">Louisiana</button>
+      <button class="state-chip">Mississippi</button>
+      <button class="state-chip">Southern Alabama</button>
+    </div>
+
+    <div style="display:grid;grid-template-columns:280px minmax(0,1fr);gap:32px;align-items:start">
+      <aside class="card" style="position:sticky;top:24px">
+        <div style="font-family:var(--font-heading);font-size:20px;font-weight:700;color:var(--heron-deep);margin-bottom:16px">Narrow it down</div>
+        <div style="margin-bottom:14px">
+          <label class="form-label" for="city">City or town</label>
+          <input class="form-input" id="city" placeholder="Hammond">
+        </div>
+        <div style="margin-bottom:14px">
+          <label class="form-label" for="day">Day</label>
+          <select class="form-select" id="day"><option>Any day</option><option>Sunday</option><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option></select>
+        </div>
+        <div style="margin-bottom:6px"><label class="form-label">Format</label></div>
+        <label class="form-check-label"><input type="checkbox" checked> In person</label>
+        <label class="form-check-label"><input type="checkbox"> Hybrid</label>
+        <label class="form-check-label"><input type="checkbox"> Phone or online</label>
+        <div style="margin-top:12px"><label class="form-check-label"><input type="checkbox"> Open meetings only</label></div>
+        <div class="info-box" style="margin-top:18px;font-size:14px;line-height:21px">Open meetings welcome family, friends and professionals. Closed meetings are for compulsive gamblers only.</div>
+      </aside>
+
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:14px">
+          <div style="font-size:16px;color:var(--ink-soft)">6 meetings listed</div>
+          <a href="#" style="font-size:15px;font-weight:600">Something here is wrong &rarr;</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div class="card">
+            <div class="meeting-header">
+              <h3 class="meeting-title">Thursday Night Mid City</h3>
+              <div class="meeting-time">Thursdays &middot; 7:00 PM</div>
+            </div>
+            <div style="font-size:16px;line-height:26px;color:var(--ink-soft);margin-top:6px">St. Alban's Chapel &middot; Baton Rouge &middot; Louisiana</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><span class="badge-info">In person</span><span class="badge-success">Open</span></div>
+            <span class="special-note">Use the side entrance after 6:45.</span>
+          </div>
+          <div class="card">
+            <div class="meeting-header">
+              <h3 class="meeting-title">Saturday Morning Metairie</h3>
+              <div class="meeting-time">Saturdays &middot; 10:00 AM</div>
+            </div>
+            <div style="font-size:16px;line-height:26px;color:var(--ink-soft);margin-top:6px">Lakeside Presbyterian &middot; Metairie &middot; Louisiana</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><span class="badge-info">In person</span><span class="badge-success">Open</span><span class="badge-success">Beginners</span></div>
+            
+          </div>
+          <div class="card">
+            <div class="meeting-header">
+              <h3 class="meeting-title">Monday Night Shreveport</h3>
+              <div class="meeting-time">Mondays &middot; 6:30 PM</div>
+            </div>
+            <div style="font-size:16px;line-height:26px;color:var(--ink-soft);margin-top:6px">Broadmoor United Methodist &middot; Shreveport &middot; Louisiana</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><span class="badge-info">Hybrid</span><span class="badge-success">Closed</span></div>
+            
+          </div>
+          <div class="card">
+            <div class="meeting-header">
+              <h3 class="meeting-title">Tuesday Night Jackson</h3>
+              <div class="meeting-time">Tuesdays &middot; 7:00 PM</div>
+            </div>
+            <div style="font-size:16px;line-height:26px;color:var(--ink-soft);margin-top:6px">St. Philip&rsquo;s Fellowship Hall &middot; Jackson &middot; Mississippi</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><span class="badge-info">In person</span><span class="badge-success">Open</span></div>
+            
+          </div>
+          <div class="card">
+            <div class="meeting-header">
+              <h3 class="meeting-title">Gulf Coast Wednesday</h3>
+              <div class="meeting-time">Wednesdays &middot; 6:00 PM</div>
+            </div>
+            <div style="font-size:16px;line-height:26px;color:var(--ink-soft);margin-top:6px">Biloxi Community Center &middot; Biloxi &middot; Mississippi</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><span class="badge-info">In person</span><span class="badge-success">Open</span></div>
+            
+          </div>
+          <div class="card">
+            <div class="meeting-header">
+              <h3 class="meeting-title">Mobile Sunday Night</h3>
+              <div class="meeting-time">Sundays &middot; 6:00 PM</div>
+            </div>
+            <div style="font-size:16px;line-height:26px;color:var(--ink-soft);margin-top:6px">Ashland Place Church &middot; Mobile &middot; Southern Alabama</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><span class="badge-info">In person</span><span class="badge-success">Closed</span></div>
+            <span class="special-note">Meets in the annex, not the sanctuary.</span>
+          </div>
+        </div>
+        <div class="card card-sage" style="margin-top:24px">
+          <div class="eyebrow" style="margin-bottom:10px">Nothing near you?</div>
+          <div style="font-family:var(--font-heading);font-size:26px;font-weight:700;color:var(--heron-deep);margin-bottom:10px">Two people and a room is a meeting.</div>
+          <div style="font-size:16px;line-height:26px;color:#4A5A46;margin-bottom:18px">The area will send literature, a format to read from, and a contact at the closest group.</div>
+          <a href="/area7#start" class="btn-sage" style="text-decoration:none">START A MEETING IN MY TOWN</a>
+        </div>
+        <p style="font-size:14px;line-height:22px;color:var(--ink-soft);margin:20px 0 0">Meeting data above is placeholder. Send the area meeting list and these rows become real.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer style="background:var(--heron-deep);color:#fff">
+  <div style="max-width:1200px;margin:0 auto;padding:48px 28px;box-sizing:border-box">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:32px">
+      <div><div style="font-family:var(--font-heading);font-size:18px;font-weight:700;margin-bottom:16px">Find Help</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <a href="/area7/meetings" style="color:var(--heron-pale);text-decoration:none;font-size:16px">Meetings by state</a>
+          <a href="#" style="color:var(--heron-pale);text-decoration:none;font-size:16px">20 Questions</a>
+          <a href="#" style="color:var(--heron-pale);text-decoration:none;font-size:16px">My first meeting</a>
+          <a href="#" style="color:var(--heron-pale);text-decoration:none;font-size:16px">Gam-Anon</a>
+        </div></div>
+      <div><div style="font-family:var(--font-heading);font-size:18px;font-weight:700;margin-bottom:16px">Area 7</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <a href="/area7#business" style="color:var(--heron-pale);text-decoration:none;font-size:16px">Trusted servants</a>
+          <a href="#" style="color:var(--heron-pale);text-decoration:none;font-size:16px">Intergroups</a>
+          <a href="#" style="color:var(--heron-pale);text-decoration:none;font-size:16px">Assembly &amp; conference</a>
+          <a href="#" style="color:var(--heron-pale);text-decoration:none;font-size:16px">Minutes &amp; documents</a>
+        </div></div>
+      <div><div style="font-family:var(--font-heading);font-size:18px;font-weight:700;margin-bottom:16px">Groups</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <a href="/area7#start" style="color:var(--heron-pale);text-decoration:none;font-size:16px">Start a meeting</a>
+          <a href="#" style="color:var(--heron-pale);text-decoration:none;font-size:16px">Order literature</a>
+          <a href="/area7#professionals" style="color:var(--heron-pale);text-decoration:none;font-size:16px">For professionals</a>
+          <a href="https://gamblersanonymous.org/" target="_blank" rel="noopener noreferrer" style="color:var(--heron-pale);text-decoration:none;font-size:16px">GA International</a>
+        </div></div>
+    </div>
+    <div style="margin-top:36px;padding-top:28px;border-top:1px solid #47596A;text-align:center">
+      <div style="font-size:15px;line-height:24px;color:var(--sage-line)">If you or someone you know has a gambling problem, there is someone to talk to at any hour.</div>
+    </div>
+  </div>
+</footer>
+</body></html>

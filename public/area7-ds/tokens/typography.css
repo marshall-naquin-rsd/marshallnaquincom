@@ -1,0 +1,111 @@
+/* Area 7 typography. League Spartan headings, Helvetica Neue body.
+   Headings are LEFT aligned by default — the parent centers every h1;
+   Area 7 pages are denser and reference-like, so centering is opt-in
+   via .page-heading. */
+
+/* Font stacks live on :root as well as in the @theme mapping — a plain
+   browser discards @theme, and hand-authored markup reads these via var(). */
+:root {
+  --font-sans:    'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-heading: 'League Spartan', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* ---------- Typography ---------- */
+/* Area 7 headings are left-aligned by default. The parent centers
+   every page h1; at area level the pages are denser and reference-like,
+   so centering is opt-in via .page-heading. */
+
+h1:not(.hero-h1) {
+  font-family: 'League Spartan', arial, helvetica, sans-serif;
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 60px;
+  color: var(--heron-deep);
+  margin-bottom: 24px;
+}
+
+.hero-h1 {
+  font-family: 'League Spartan', arial, helvetica, sans-serif;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 67px;
+}
+
+.page-heading {
+  font-family: 'League Spartan', arial, helvetica, sans-serif;
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 60px;
+  color: var(--heron-deep);
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.section-heading {
+  font-family: 'League Spartan', arial, helvetica, sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 48px;
+  color: var(--heron-deep);
+  margin-bottom: 20px;
+}
+
+/* The eyebrow is new in Area 7 — it carries the state/section label
+   that the parent site did not need. */
+.eyebrow {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--sage-deep);
+}
+
+.lede {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  line-height: 32px;
+  color: #3D4A50;
+  text-wrap: pretty;
+}
+
+.meeting-title {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 30px;
+  color: #1b1b1b;
+  margin: 0;
+}
+
+.meeting-time {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 30px;
+  color: #1b1b1b;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.special-note {
+  display: block;
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 27px;
+  color: var(--sage-deep);
+  margin-top: 8px;
+}
+
+@media (max-width: 639px) {
+  h1:not(.hero-h1), .page-heading { font-size: 32px; line-height: 36px; }
+  .hero-h1 { font-size: 36px; line-height: 40px; }
+  .section-heading { font-size: 26px; line-height: 32px; }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  h1:not(.hero-h1), .page-heading { font-size: 40px; line-height: 44px; }
+  .hero-h1 { font-size: 48px; line-height: 52px; }
+  .section-heading { font-size: 32px; line-height: 38px; }
+}

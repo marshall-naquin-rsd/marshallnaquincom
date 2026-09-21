@@ -4,6 +4,8 @@ Personal website for [Marshall Naquin](https://marshallnaquin.com).
 
 Speaker site for booking talks on addiction and recovery. Staging/WIP routes stay reachable by URL but are unlinked from the public masthead and footer.
 
+The Area 7 design-system proposal is at [`/area7`](https://marshallnaquin.com/area7) (plus `/area7/meetings` and `/area7/map`). The 2027 mini-conference preview is at [`/2027miniconf`](https://marshallnaquin.com/2027miniconf). There is no redirect between them.
+
 ## Stack
 
 - Next.js 16 (App Router)
