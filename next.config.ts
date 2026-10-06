@@ -1,6 +1,18 @@
 import type { NextConfig } from "next";
+import { PARKED_PATH_PREFIXES } from "./lib/parked-routes";
+
+const noindexHeader = {
+  key: "X-Robots-Tag",
+  value: "noindex, nofollow",
+};
 
 const nextConfig: NextConfig = {
+  async headers() {
+    return PARKED_PATH_PREFIXES.flatMap((prefix) => [
+      { source: prefix, headers: [noindexHeader] },
+      { source: `${prefix}/:path*`, headers: [noindexHeader] },
+    ]);
+  },
   // Pretty URLs for the static Area 7 proposal. Intentionally not a redirect
   // from /area7 to /2027miniconf — those are different pages.
   async rewrites() {

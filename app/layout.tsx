@@ -20,6 +20,7 @@ const sourceSans = Source_Sans_3({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://marshallnaquin.com"),
   title: {
     default: "Marshall Naquin",
     template: "%s · Marshall Naquin",
