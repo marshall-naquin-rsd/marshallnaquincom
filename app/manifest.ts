@@ -3,7 +3,7 @@ import type { MetadataRoute } from 'next'
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'Marshall R. Naquin',
-    short_name: 'Marshall Naquin',
+    short_name: 'Marshall',
     description:
       'Physician in recovery from gambling addiction. Talks for treatment programs, 12 step groups, and the staff and clinicians who work with them.',
     start_url: '/',

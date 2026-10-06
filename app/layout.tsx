@@ -27,6 +27,7 @@ export const metadata: Metadata = {
   },
   description:
     "Physician in recovery from gambling addiction. Talks for treatment programs, 12 step groups, and the staff and clinicians who work with them.",
+  appleWebApp: { title: "Marshall" },
 };
 
 export const viewport: Viewport = {
