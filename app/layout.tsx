@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { Source_Sans_3, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 
@@ -44,7 +45,10 @@ export default function RootLayout({
       lang="en"
       className={`${sourceSerif.variable} ${sourceSans.variable} h-full antialiased`}
     >
-      <body className="page">{children}</body>
+      <body className="page">
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
