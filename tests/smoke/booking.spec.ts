@@ -3,7 +3,9 @@ import { test, expect } from "@playwright/test";
 test.describe("Booking page @smoke", () => {
   test("shows the locked inquiry fields", async ({ page }) => {
     await page.goto("/booking");
-    await expect(page).toHaveTitle(/Book a talk/);
+    await expect(page).toHaveTitle(
+      "Book Marshall Naquin, MD | Addiction & Recovery Talks",
+    );
     await expect(
       page.getByRole("heading", { name: "One message starts it." }),
     ).toBeVisible();

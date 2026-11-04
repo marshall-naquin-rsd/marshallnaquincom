@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import { PersonJsonLd } from "@/components/PersonJsonLd";
 import { SpeakerAbout } from "@/components/SpeakerAbout";
+import { pageMetadata } from "@/lib/seo";
 import {
   bothSides,
   bookingBand,
@@ -23,9 +25,18 @@ import {
   topicsHeading,
 } from "@/lib/copy";
 
+export const metadata = pageMetadata({
+  title: "Marshall Naquin, MD | Gambling Addiction & Recovery Speaker",
+  description:
+    "Emergency physician in recovery from gambling addiction. Talks for treatment programs, 12-step groups and clinicians: Both Sides of the White Coat.",
+  path: "/",
+  openGraphType: "website",
+});
+
 export default function Home() {
   return (
     <main>
+      <PersonJsonLd includeWebSite />
       <section id="main" className="hero">
         <div className="hero-copy">
           <p className="eyebrow">{hero.eyebrow}</p>
@@ -75,9 +86,18 @@ export default function Home() {
               <article className="raised-card" key={sample.src}>
                 <h3 className="card-title">{sample.title}</h3>
                 <p className="card-body">{sample.body}</p>
-                <audio controls preload="metadata" aria-label={sample.label}>
+                <audio
+                  controls
+                  preload="metadata"
+                  aria-label={sample.label}
+                  aria-describedby={sample.transcriptId}
+                >
                   <source src={sample.src} type="audio/mpeg" />
                 </audio>
+                <details className="transcript">
+                  <summary>Read the transcript</summary>
+                  <p id={sample.transcriptId}>{sample.transcript}</p>
+                </details>
                 <a href={sample.src} download>
                   {downloadSample}
                 </a>
