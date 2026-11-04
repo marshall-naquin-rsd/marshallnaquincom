@@ -47,12 +47,18 @@ export const samples = [
     body: "Seventh grade, a video arcade, and the candy that explains the draw. About a minute and forty seconds.",
     src: "/audio/arcade-candy-thats-the-draw.mp3",
     label: "Arcade, candy, and the draw audio sample",
+    transcriptId: "transcript-arcade-candy",
+    transcript:
+      "I started gambling when I was in the seventh grade at a video arcade. There's a little game, most people played it, you drop a quarter in, if you drop the quarter in just the right spot it lands on a shelf. And if that quarter pushes some other quarters off the shelf, you get more quarters. So one quarter in might get five quarters out or it might get six quarters out or it might get no quarters out. So around that time, that period of my life was no good. The first time I rolled into this arcade it was perfect. Wasn't very popular, nobody was there. I had my five or 10 bucks with me that my parents had given me. And I could ride my bike down there and just be there by myself. Nobody would bother me, nobody would hurt me, nobody would pick on me. And the more times I went to the arcade that quarter machine became virtually the only machine I played. I would occasionally play like Skee-Ball or some of the other ones that gave tickets. And the tickets of course you could, once you put $10 in a Skee-Ball machine you could get an eraser that's worth a nickel. But those were the only machines I played. For five bucks I could have probably bought three bags of candy at the store but I would turn that into playing all those games just to get a few tickets. It's a ridiculous process. It's, in technical terms, in psychology they refer to it as positive reinforcement with random reward. That not knowing that moment of suspense will it pay off or will it not, that's the draw.",
   },
   {
     title: "No idea what addiction was",
     body: "Board certified for years, and still no idea what addiction was. About a minute.",
     src: "/audio/credentials-no-idea-what-addiction-was.mp3",
     label: "No idea what addiction was audio sample",
+    transcriptId: "transcript-no-idea",
+    transcript:
+      "I've been board certified emergency physician for 13 years, been a medical director of emergency rooms, prisons. I've trained instructors for American Heart Association, trained medical students and residents, and personally had countless hours of education myself, and I had no idea what addiction was. Five of those years had gone by, by the night when I put my hands on a patient. Time went by before I truly understood what addiction is. On the day I first encountered that patient in 2018, I would have told you that these behaviors were a choice and a continued choice, and they were doing this to themselves and shouldn't even be allowed in the emergency room. And it still happens, you know, people come in and I have a little bit better understanding, but you know, people come in and they're like, they're here again. I'm like, well, you know, they're not in a place, these are not decisions and choices that they're making anymore. This is their addiction that's in full control of everything that they do.",
   },
 ] as const;
 
