@@ -4,7 +4,7 @@ import type { Metadata } from "next";
  * Share image path. Swap this one line for "/og/marshallnaquin-og.jpg"
  * when that file exists.
  */
-export const SHARE_IMAGE_PATH = "/images/marshall-naquin-md-portrait.jpg";
+export const SHARE_IMAGE_PATH = "/og/marshallnaquin-og.jpg";
 
 const shareImage = {
   url: SHARE_IMAGE_PATH,
